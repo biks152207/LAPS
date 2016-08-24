@@ -15,6 +15,7 @@
       <!-- bower:css -->
       <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
       <link rel="stylesheet" href="bower_components/bootstrap-social/bootstrap-social.css" />
+      <link rel="stylesheet" href="bower_components/components-font-awesome/css/font-awesome.css" />
       <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css({.tmp,client}) app/app.css -->
@@ -24,14 +25,41 @@
     <!-- endbuild -->
   </head>
   <body ng-app="lapsApp">
-    <!--[if lt IE 7]>
-      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
 
-    <!-- Add your site or application content here -->
-    <navbar></navbar>
-    <div ui-view=""></div>
-    <footer></footer>
+    <div id="wrapper">
+
+      <div class="m-app-loading" ng-if="isLoading">
+
+          <!-- BEGIN: Actual animated container. -->
+          <div class="animated-container">
+
+              <div class="messaging">
+
+                  <h1>
+                      App is Loading <i class="fa fa-circle-o-notch fa-spin fa-1x fa-fw"></i>
+                  </h1>
+
+                  <p>
+                    Platform that helps professional sports person after the retirement
+                  </p>
+
+              </div>
+
+          </div>
+          <!-- END: Actual animated container. -->
+
+      </div>
+      <!-- END: App-Loading Screen. -->
+      <!--[if lt IE 7]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+      <![endif]-->
+
+      <!-- Add your site or application content here -->
+      <navbar></navbar>
+      <div class="mainView" ui-view=""></div>
+      <footer></footer>
+    </div>
+
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <script>
