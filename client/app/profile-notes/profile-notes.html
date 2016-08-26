@@ -1,0 +1,307 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="clearfix">
+        <div id="breadcrumb" class="pull-left">
+          My Profile
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <h1>My Profile</h1>
+      <i>/laps/v1/members/getmember</i>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label for="fname">First name</label>
+        <input type="text" class="form-control" id="fname" placeholder="">
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label for="lname">Last name</label>
+        <input type="text" class="form-control" id="lname" placeholder="">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email" disabled>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label for="sport">Sport</label><i>/laps/v1/content/getsports</i>
+        <select class="form-control" id="sport">
+          <option value=""></option>
+          <option value="1">Football</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label for="address1">Address</label>
+        <input type="text" class="form-control" id="address1" placeholder="">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" id="address2" placeholder="">
+      </div>
+      <div class="form-group">
+        <label for="city">Town/City</label>
+        <input type="text" class="form-control" id="city" placeholder="">
+      </div>
+      <div class="form-group">
+        <label for="pcode">Postcode</label>
+        <input type="text" class="form-control" id="pcode" placeholder="">
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label for="home">Home Phone</label>
+        <input type="text" class="form-control" id="home" placeholder="">
+      </div>
+      <div class="form-group">
+        <label for="work">Work Phone</label>
+        <input type="text" class="form-control" id="work" placeholder="">
+      </div>
+      <div class="form-group">
+        <label for="mobile">Mobile Number</label>
+        <input type="text" class="form-control" id="mobile" placeholder="">
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+      <div class="form-group">
+        <label for="sport">Roles interested in</label>
+        <select class="form-control" id="sport" multiple>
+          <option value=""></option>
+          <option value="1">Account Manager</option>
+        </select>
+        <i>/laps/v1/content/getroles - for whole list</i><br/>
+        <i>/laps/v1/member/getroles - for chosen roles</i>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="clearfix">
+        <button class="btn">Save Changes</button>
+      </div>
+    </div>
+  </div>
+  <h2>Change Password</h2>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="form-group">
+        <label for="exampleInputPassword1">New Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Confirm Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+      </div>
+    </div>
+  </div>
+  <button class="btn">Change Password</button>
+  <i>/laps/v1/members/changepassword</i>
+  <div class="row">
+    <div class="col-xs-12">
+      <h2>Uploaded CVs</h2>
+    </div>
+  </div>
+  <div class="row">
+    <i>/laps/v1/members/getuploadedcvs</i>
+    <div class="col-sm-3 text-center">
+      <img src="" alt="file format image" class="img-responsive"/>
+      <span>File name</span><br/>
+      <i>click image or filename to open options</i>
+      <div class="options">
+        <button class="btn">Download</button>
+        <i>/laps/v1/members/deleteuploadedcv</i>
+        <button class="btn">Delete</button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="form-group">
+        <label for="exampleInputFile">Upload new CV</label>
+        <input type="file" id="exampleInputFile">
+        <p class="help-block">Accepted file types.</p>
+        <i>/laps/v1/members/setuploadedcv</i>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <h2>CV Builder</h2>
+      <i>/laps/v1/members/getcvs</i>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="sport">CVs</label>
+            <select class="form-control" id="sport">
+              <option value=""></option>
+              <option value="1">Saved CV</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-8">
+          <button class="btn">Open</button>
+          <i>/laps/v1/members/getcv</i>
+          <button class="btn">New</button>
+          <i>open below builder form</i>
+          <button class="btn">Import</button>
+          <i>open up a modal for user to upload a file then call /laps/v1/members/importcv<br/>
+          use the results to build below</i>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="statment">Personal Statement</label>
+        <textarea class="form-control" rows="6" id="statment"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="statment">Objectives</label>
+        <textarea class="form-control" rows="6" id="statment"></textarea>
+      </div>
+      <h4>Employment</h4>
+      <div class="employment">
+        <div class="row">
+          <div class="col-sm-3 col-xs-6">
+            <div class="form-group">
+              <label for="city">From Month</label>
+              <input type="text" class="form-control" id="city" placeholder="">
+            </div>
+          </div>
+          <div class="col-sm-3 col-xs-6">
+            <div class="form-group">
+              <label for="city">From Year</label>
+              <input type="text" class="form-control" id="city" placeholder="">
+            </div>
+          </div>
+          <div class="col-sm-3 col-xs-6">
+            <div class="form-group">
+              <label for="city">To Month</label>
+              <input type="text" class="form-control" id="city" placeholder="">
+            </div>
+          </div>
+          <div class="col-sm-3 col-xs-6">
+            <div class="form-group">
+              <label for="city">To Year</label>
+              <input type="text" class="form-control" id="city" placeholder="">
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="statment">Summary</label>
+          <textarea class="form-control" rows="6" id="statment"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="statment">Responsibilities</label>
+          <textarea class="form-control" rows="6" id="statment"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="statment">Achievments</label>
+          <textarea class="form-control" rows="6" id="statment"></textarea>
+        </div>
+        <button class="btn">Add Employment</button>
+      </div>
+      <h4>Education</h4>
+      <div class="education">
+        <div class="row">
+          <div class="col-sm-3 col-xs-6">
+            <div class="form-group">
+              <label for="city">From Month</label>
+              <input type="text" class="form-control" id="city" placeholder="">
+            </div>
+          </div>
+          <div class="col-sm-3 col-xs-6">
+            <div class="form-group">
+              <label for="city">From Year</label>
+              <input type="text" class="form-control" id="city" placeholder="">
+            </div>
+          </div>
+          <div class="col-sm-3 col-xs-6">
+            <div class="form-group">
+              <label for="city">To Month</label>
+              <input type="text" class="form-control" id="city" placeholder="">
+            </div>
+          </div>
+          <div class="col-sm-3 col-xs-6">
+            <div class="form-group">
+              <label for="city">To Year</label>
+              <input type="text" class="form-control" id="city" placeholder="">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="statment">Place of Study</label>
+              <input type="text" class="form-control" id="city" placeholder="">
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="statment">Subject</label>
+              <input type="text" class="form-control" id="city" placeholder="">
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="statment">Qualification</label>
+              <input type="text" class="form-control" id="city" placeholder="">
+            </div>
+          </div>
+          <button class="btn">Add Education</button>
+        </div>
+      </div>
+      <h4>Courses</h4>
+      <div class="education">
+        <div class="row">
+          <div class="col-sm-3 col-xs-6">
+            <div class="form-group">
+              <label for="city">Month</label>
+              <input type="text" class="form-control" id="city" placeholder="">
+            </div>
+          </div>
+          <div class="col-sm-3 col-xs-6">
+            <div class="form-group">
+              <label for="city">Year</label>
+              <input type="text" class="form-control" id="city" placeholder="">
+            </div>
+          </div>
+          <div class="col-sm-3 col-xs-6">
+            <div class="form-group">
+              <label for="city">Name</label>
+              <input type="text" class="form-control" id="city" placeholder="">
+            </div>
+          </div>
+          <div class="col-sm-3 col-xs-6">
+            <div class="form-group">
+              <label for="city">Qualification</label>
+              <input type="text" class="form-control" id="city" placeholder="">
+            </div>
+          </div>
+        </div>
+          <button class="btn">Add Course</button>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="statment">Hobbies</label>
+        <textarea class="form-control" rows="6" id="statment"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="statment">Other</label>
+        <textarea class="form-control" rows="6" id="statment"></textarea>
+      </div>
+      <button class="btn">Save CV</button>
+      <i>/laps/v1/members/setcv</i>
+    </div>
+  </div>
+</div>
