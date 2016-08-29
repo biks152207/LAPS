@@ -2,14 +2,14 @@
 
 (function() {
 
-  function authInterceptor($rootScope, $q, $cookies, $injector, Util) {
+  function authInterceptor($rootScope, $q, $cookieStore, $injector, Util) {
     var state;
     return {
       // Add authorization token to headers
       request(config) {
         config.headers = config.headers || {};
-        if ($cookies.get('token') && Util.isSameOrigin(config.url)) {
-          config.headers.Authorization = 'Bearer ' + $cookies.get('token');
+        if ($cookieStore.get('user')) {
+          config.headers.Authorization = 'Basic ' + $cookieStore.get('user');
         }
         return config;
       },

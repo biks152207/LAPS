@@ -2,5 +2,5 @@
 
 exports = module.exports = {
   // List of user roles
-  userRoles: ['guest', 'user', 'admin']
+  'baseUri': 'http://api.laps.careers/wp-json/laps/v1'
 };

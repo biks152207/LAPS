@@ -2,11 +2,7 @@
   angular.module("lapsApp.constants", [])
 
 .constant("appConfig", {
-	"userRoles": [
-		"guest",
-		"user",
-		"admin"
-	]
+	"baseUri": "http://api.laps.careers/wp-json/laps/v1"
 })
 
 ;

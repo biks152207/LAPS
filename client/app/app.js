@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('lapsApp', ['lapsApp.auth', 'lapsApp.admin', 'lapsApp.constants', 'ngCookies',
-    'ngResource', 'ngSanitize', 'ui.router', 'ui.bootstrap', 'validation.match'
+    'ngResource', 'ngSanitize', 'ui.router', 'ui.bootstrap', 'validation.match',
+    'ngMessages', 'ngStorage'
   ])
   .config(function($urlRouterProvider, $locationProvider) {
     $urlRouterProvider.otherwise('/');

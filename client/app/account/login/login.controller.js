@@ -1,8 +1,10 @@
 'use strict';
 
 class LoginController {
-  constructor(Auth, $state) {
+  constructor(Auth, $state, AuthenticationService, $timeout) {
     this.user = {};
+    this.timeout = $timeout;
+    this.AuthenticationService = AuthenticationService;
     this.errors = {};
     this.submitted = false;
 
@@ -10,21 +12,38 @@ class LoginController {
     this.$state = $state;
   }
 
-  login(form) {
-    this.submitted = true;
+  setTimer(value){
+    this.timeout(function(){
+      value = false
+    }, 1000)
+  }
 
+  login(form) {
     if (form.$valid) {
-      this.Auth.login({
-          email: this.user.email,
-          password: this.user.password
-        })
-        .then(() => {
-          // Logged in, redirect to home
-          this.$state.go('main');
-        })
-        .catch(err => {
-          this.errors.other = err.message;
-        });
+      this.submitted = true;
+      this.AuthenticationService.Login(this.user,
+        (response) => {
+          if (!response.success){
+            this.submitted = false;
+            this.errMessage = response.message;
+            this.setTimer(this.errMessage);
+          }else{
+            this.AuthenticationService.SetCredentials(this.user);
+            this.$state.go('myroute');
+          }
+        }
+      )
+      // this.Auth.login({
+      //     email: this.user.email,
+      //     password: this.user.password
+      //   })
+      //   .then(() => {
+      //     // Logged in, redirect to home
+      //     this.$state.go('main');
+      //   })
+      //   .catch(err => {
+      //     this.errors.other = err.message;
+      //   });
     }
   }
 }
