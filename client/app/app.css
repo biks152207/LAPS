@@ -41,6 +41,7 @@
 }
 div.m-app-loading {
    position: fixed ;
+   z-index: 1000
 }
 div.m-app-loading div.animated-container {
    background-color: #333333 ;

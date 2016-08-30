@@ -1,14 +1,14 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-4 col-sm-offset-4">
       <h1>Login</h1>
     </div>
-    <div class="col-sm-12" ng-if="vm.errMessage">
+    <div class="col-sm-4 col-sm-offset-4" ng-if="vm.errMessage">
       <div class="text-warning">
         {{vm.errMessage}}
       </div>
     </div>
-    <div class="col-sm-12">
+    <div class="col-sm-4 col-sm-offset-4">
       <form  class="form"  name="form" ng-submit="vm.login(form)" novalidate>
         <fieldset ng-disabled="vm.submitted">
 

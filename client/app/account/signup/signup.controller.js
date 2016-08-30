@@ -3,9 +3,10 @@
 class SignupController {
   //end-non-standard
 
-  constructor(Auth, $state) {
+  constructor(Auth, $state, sportsData) {
       this.Auth = Auth;
       this.$state = $state;
+      this.sports = sportsData;
     }
     //start-non-standard
 

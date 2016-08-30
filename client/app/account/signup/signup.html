@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-4 col-sm-offset-4">
       <h1>Sign up</h1>
     </div>
-    <div class="col-sm-12">
+    <div class="col-sm-4 col-sm-offset-4">
       <form class="form" name="form" ng-submit="vm.register(form)" novalidate>
 
         <div class="form-group" ng-class="{ 'has-success': form.name.$valid && vm.submitted,
@@ -63,9 +63,18 @@
             Passwords must match.
           </p>
         </div>
+        <div class="form-group" >
+          <label for="">Sport</label>
+          <select class="form-control" name="sport" ng-options="sport.Id as sport.Name for sport in vm.sports" ng-model="vm.user.sport">
+            <option value="">Select Sports</option>
+          </select>
+        </div>
 
         <div>
-          <button class="btn btn-inverse btn-lg btn-register" type="submit">
+          <p class="text-info">
+            Signup is currently disable in beta version
+          </p>
+          <button class="btn btn-inverse btn-lg btn-register" ng-disabled="true" type="submit">
             Sign up
           </button>
           <a class="btn btn-default btn-lg btn-login" ui-sref="login">

@@ -6,7 +6,8 @@ angular.module('lapsApp')
         url: '/login',
         templateUrl: 'app/account/login/login.html',
         controller: 'LoginController',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        title: 'Login'
       })
       .state('logout', {
         url: '/logout?referrer',
@@ -22,14 +23,21 @@ angular.module('lapsApp')
         url: '/signup',
         templateUrl: 'app/account/signup/signup.html',
         controller: 'SignupController',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        title: 'Register',
+        resolve:{
+          sportsData: ['HttpService', function(HttpService){
+            return HttpService.get('post', '/content/getsports');
+          }]
+        }
       })
       .state('settings', {
         url: '/settings',
         templateUrl: 'app/account/settings/settings.html',
         controller: 'SettingsController',
         controllerAs: 'vm',
-        authenticate: true
+        authenticate: true,
+        title: 'Setting'
       });
   })
   .run(function($rootScope) {
