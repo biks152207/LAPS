@@ -9,13 +9,16 @@
       </div>
     </div>
     <div class="col-sm-4 col-sm-offset-4">
-      <form  class="form"  name="form" ng-submit="vm.login(form)" novalidate>
+      <form  class="form"  name="postForm" ng-submit="vm.login(form)" novalidate>
         <fieldset ng-disabled="vm.submitted">
 
         <div class="form-group">
           <label>Username</label>
 
           <input type="text" name="username" class="form-control" ng-model="vm.user.username" required>
+          <span class="text-danger" ng-messages="postForm.username.$error" ng-if="postForm.$submitted">
+            <p ng-message="required">Please enter your username</p>
+          </span>
         </div>
 
         <div class="form-group">
