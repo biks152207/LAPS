@@ -7,9 +7,10 @@
       <div class="text-warning">
         {{vm.errMessage}}
       </div>
+      <br>
     </div>
     <div class="col-sm-4 col-sm-offset-4">
-      <form  class="form"  name="postForm" ng-submit="vm.login(form)" novalidate>
+      <form  class="form"  name="postForm" ng-submit="vm.login(postForm)" novalidate>
         <fieldset ng-disabled="vm.submitted">
 
         <div class="form-group">

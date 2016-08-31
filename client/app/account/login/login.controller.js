@@ -14,8 +14,8 @@ class LoginController {
 
   setTimer(value){
     this.timeout(function(){
-      value = false
-    }, 1000)
+      this.errMessage = false;
+    }.bind(this), 4000)
   }
 
   login(form) {

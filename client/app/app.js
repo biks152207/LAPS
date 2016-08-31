@@ -22,7 +22,7 @@ angular.module('lapsApp', ['lapsApp.auth', 'lapsApp.admin', 'lapsApp.constants',
 
     // Executes when the transition to certain routes start
     $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams){
-
+      console.log(toState);
       if (!toState.authRequire && toState.name !='logout' && AuthenticationService.isLoggedIn()){
         e.preventDefault();
         setLoadingState('end');
@@ -36,6 +36,7 @@ angular.module('lapsApp', ['lapsApp.auth', 'lapsApp.admin', 'lapsApp.constants',
         $state.go('login');
         return;
       }
+      console.log('change start');
       setLoadingState('start');
     });
 
