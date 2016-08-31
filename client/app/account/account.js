@@ -7,16 +7,19 @@ angular.module('lapsApp')
         templateUrl: 'app/account/login/login.html',
         controller: 'LoginController',
         controllerAs: 'vm',
-        title: 'Login'
+        title: 'Login',
+        authRequire: false
       })
       .state('logout', {
         url: '/logout?referrer',
         referrer: 'main',
+        authRequire: false,
         template: '',
-        controller: function($state, Auth) {
-          var referrer = $state.params.referrer || $state.current.referrer || 'main';
-          Auth.logout();
-          $state.go(referrer);
+        controller: function($state, AuthenticationService) {
+          console.log('logout');
+          AuthenticationService.clearUser();
+          // Auth.logout();
+          $state.go('main');
         }
       })
       .state('signup', {
@@ -24,10 +27,11 @@ angular.module('lapsApp')
         templateUrl: 'app/account/signup/signup.html',
         controller: 'SignupController',
         controllerAs: 'vm',
+        authRequire: false,
         title: 'Register',
         resolve:{
           sportsData: ['HttpService', function(HttpService){
-            return HttpService.get('post', '/content/getsports');
+            return HttpService.post('/content/getsports');
           }]
         }
       })

@@ -9,7 +9,9 @@
       request(config) {
         config.headers = config.headers || {};
         if ($cookieStore.get('user')) {
-          config.headers.Authorization = 'Basic ' + $cookieStore.get('user');
+          console.log($cookieStore.get('user').auth);
+          config.headers.Authorization = 'Basic ' + $cookieStore.get('user').auth;
+          console.log(config.headers.Authorization);
         }
         return config;
       },

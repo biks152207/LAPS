@@ -19,6 +19,20 @@ import passport from 'passport';
 import session from 'express-session';
 import connectMongo from 'connect-mongo';
 import mongoose from 'mongoose';
+// var allowCrossDomain = function(req, res, next) {
+//   // CORS headers
+//       res.header("Access-Control-Allow-Origin", "http://api.laps.careers"); // restrict it to the required domain
+//       res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
+//       // Set custom headers for CORS
+//       res.header("Access-Control-Allow-Headers", "Content-type,Accept,X-Custom-Header");
+//
+//       if (req.method === "OPTIONS") {
+//           return res.status(200).end();
+//       }
+//
+//       return next();
+// };
+var cors = require('cors');
 var MongoStore = connectMongo(session);
 
 export default function(app) {
@@ -35,7 +49,6 @@ export default function(app) {
   app.set('appPath', path.join(config.root, 'client'));
   app.use(express.static(app.get('appPath')));
   app.use(morgan('dev'));
-
   app.set('views', config.root + '/server/views');
   app.engine('html', require('ejs').renderFile);
   app.set('view engine', 'html');

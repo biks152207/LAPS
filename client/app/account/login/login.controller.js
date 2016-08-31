@@ -23,13 +23,14 @@ class LoginController {
       this.submitted = true;
       this.AuthenticationService.Login(this.user,
         (response) => {
-          if (!response.success){
+          console.log(response);
+          if (response.status == 500){
             this.submitted = false;
-            this.errMessage = response.message;
+            this.errMessage = response.data.code;
             this.setTimer(this.errMessage);
           }else{
-            this.AuthenticationService.SetCredentials(this.user);
-            this.$state.go('myroute');
+            this.AuthenticationService.SetCredentials(this.user, response.id);
+            this.$state.go('parent.profile');
           }
         }
       )

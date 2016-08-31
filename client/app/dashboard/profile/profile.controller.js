@@ -1,9 +1,16 @@
-'use strict';
-class ProfileController {
-  constructor(){
-    console.log('here we are');
-  }
-}
+(function(){
+  'use strict';
+  angular.module('lapsApp')
+    .controller('ProfileCtrl', ProfileCtrl);
 
-angular.module('lapsApp')
-  .controller('ProfileCtrl', ProfileController)
+  function ProfileCtrl(HttpService,userProfileData,sportsData){
+    console.log(userProfileData);
+    console.log(sportsData);
+    console.log('roles');
+    // Profile data
+    this.profile = userProfileData;
+    // Sports data
+    this.sports = sportsData;
+
+  }
+})();

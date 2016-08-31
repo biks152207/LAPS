@@ -18,10 +18,16 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li ng-hide="nav.isLoggedIn()" ui-sref-active="active" ng-if="!gobals.currentUser.username"><a ui-sref="signup">Sign up</a></li>
-        <li ng-hide="nav.isLoggedIn()" ui-sref-active="active" ng-if="!gobals.currentUser.username"><a ui-sref="login">Login</a></li>
-        <li  ng-if="gobals.currentUser.username"><p class="navbar-text">Hello {{ globals.currentUser.username }}</p> </li>
-        <li ng-show="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="settings"><span class="glyphicon glyphicon-cog"></span></a></li>
+        <li ng-hide="nav.isLoggedIn()" ui-sref-active="active" ><a ui-sref="signup">Sign up</a></li>
+        <li ng-hide="nav.isLoggedIn()" ui-sref-active="active" ><a ui-sref="login">Login</a></li>
+        <li ng-if="nav.isLoggedIn()" ui-sref-active="active" ><a href="#">Advice</a></li>
+        <li ng-if="nav.isLoggedIn()" ui-sref-active="active"><a href="#">Roles</a></li>
+        <li ng-if="nav.isLoggedIn()" ui-sref-active="active"><a href="#">Videos</a></li>
+        <li ng-if="nav.isLoggedIn()" ui-sref-active="active"><a href="#">Jobs</a></li>
+        <li ng-if="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="parent.profile">My Profile</a></li>
+        <li ng-if="nav.isLoggedIn()" role="separator" class="divider"></li>
+        <li  ng-if="nav.isLoggedIn()"><p class="navbar-text">Hello {{ nav.getCurrentUser().username }}</p> </li>
+        <!-- <li ng-show="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="settings"><span class="glyphicon glyphicon-cog"></span></a></li> -->
         <li ng-show="nav.isLoggedIn()"><a ui-sref="logout">Logout</a></li>
       </ul>
     </div>
