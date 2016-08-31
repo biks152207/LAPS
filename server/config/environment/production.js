@@ -19,10 +19,6 @@ module.exports = {
           process.env.MONGOHQ_URL ||
           process.env.OPENSHIFT_MONGODB_DB_URL +
           process.env.OPENSHIFT_APP_NAME ||
-<<<<<<< HEAD
           'mongodb://laps:laps@ds013946.mlab.com:13946/laps'
-=======
-          'mongodb://localhost/laps'
->>>>>>> 6269f3cae1340d76e30af496bdf6270fa2e9a04f
   }
 };
