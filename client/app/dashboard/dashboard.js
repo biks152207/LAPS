@@ -14,6 +14,9 @@
               },
               sportsData: function(HttpService){
                 return HttpService.post('/content/getsports');
+              },
+              rolesData: function(HttpService){
+               return HttpService.post('/content/getroles');
               }
             }
           })
@@ -28,6 +31,7 @@
             url: '/change-password',
             templateUrl: 'app/dashboard/changepassword/changepassword.html',
             controller: 'changePasswordCtrl',
+            controllerAs: 'vm',
             authRequire: true
           })
           .state('parent.cv', {

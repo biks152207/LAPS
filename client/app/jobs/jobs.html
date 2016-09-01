@@ -1,0 +1,116 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="clearfix">
+        <div id="breadcrumb" class="pull-left">
+          <h1>Search Jobs</h1>
+        </div>
+        <div class="pull-right">
+          <form class="form-inline">
+            <div class="form-group">
+              <label class="control-label">Sorted by</label>
+              <select class="form-control">
+                <option value="date" checked>Most Recent</option>
+                <option value="distance" checked>Distance</option>
+                <option value="salary-high" checked>Salary (High to Low)</option>
+                <option value="salary-low" checked>Salary (Low to High)</option>
+              </select>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3">
+    <div class="form-group">
+        <label for="keywords">Based on</label><br/>
+        <label class="radio-inline">
+          <input type="radio" name="searchOption" value="basedOnProfile" ng-checked="vm.searchParams()" ng-model="vm.basedOn">
+          My Profile
+        </label>
+        <label class="radio-inline">
+          <input type="radio" name="searchOption" ng-checked="vm.searchParams()" value="customBased" ng-model="vm.basedOn"> Custom
+        </label>
+      </div>
+    </div>  
+  </div>
+  <div class="row">
+    <div class="col-sm-3">
+      <div id="member">
+        Roles<br/>
+        member location
+      </div>
+      <div id="custom">
+        <div class="form-group">
+          <label for="keywords">Keyword(s)</label>
+          <input ng-model="vm.params.keywords" type="text" class="form-control" id="keywords" placeholder="" required>
+        </div>
+        <div class="form-group">
+          <label for="keywords">Location</label>
+          <input ng-model="vm.params.Location" type="text" class="form-control" id="keywords" placeholder="" required>
+        </div>
+        <button class="btn">Update Results</button>
+      </div>
+      <div class="form-group">
+        <label for="distance">Within</label>
+          <select class="form-control" id="distance" ng-model="vm.params.SearchRadiusMiles" ng-options="mile.value as mile.Name for mile in vm.miles">
+            <option value="">Select</option>
+          </select>
+      </div>
+      <div id="advanced" >
+        <div class="form-group">
+          <label for="salary-min">Salary Min</label>
+            <select class="form-control" id="salary-min" ng-options="minimum.value as minimum.Name for minimum in vm.minimumSalaryList" ng-model="vm.params.MinSalary">
+              <option value="">Select</option>
+            </select>
+        </div>
+        <div class="form-group">
+          <label for="salary-max">Salary Max</label>
+            <select class="form-control" id="salary-max">
+              <option value=""></option>
+              <option value="20000">&pound;20,000</option>
+              <option value="30000">&pound;30,000</option>
+              <option value="40000">&pound;40,000</option>
+              <option value="50000">&pound;50,000</option>
+              <option value="60000">&pound;60,000</option>
+              <option value="70000">&pound;70,000</option>
+              <option value="80000">&pound;80,000</option>
+              <option value="90000">&pound;90,000</option>
+              <option value="999999">&pound;100,000+</option>
+            </select>
+        </div>
+        <div class="form-group">
+          <label for="contract">Contract Type</label>
+            <select class="form-control" id="contract" multiple>
+              <option value=""></option>
+              <option value="P">Permanent</option>
+              <option value="T">Temporary</option>
+              <option value="C">Contract</option>
+            </select>
+        </div>
+        <div class="form-group">
+          <label for="working">Working Hours</label>
+            <select class="form-control" id="working" multiple>
+              <option value=""></option>
+              <option value="F">Full Time</option>
+              <option value="P">Part Time</option>
+            </select>
+        </div>
+      </div>
+      <button class="btn" data-toggle="collapse" data-target="#advanced">More Search options</button>
+    </div>
+    <div class="col-sm-9">
+      <div>
+        <h3>job_title</h3>
+        <ul>
+          <li>job_location</li>
+          <li>salary_description</li>
+          <li>publish_from</li>
+        </ul>
+        <p>job_summary</p>
+        <button class="btn pull-right">Find out more</button>
+      </div>
+    </div>
+  </div>
+</div>
