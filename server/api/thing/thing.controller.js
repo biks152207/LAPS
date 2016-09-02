@@ -11,6 +11,10 @@
 
 import _ from 'lodash';
 import Thing from './thing.model';
+var request = require('request');
+let key = 'AIzaSyCfTGweoOHBu3ooYtXFgO0kVw_Htws4sO8';
+let remoteUrl = 'https://maps.googleapis.com/maps/api/place/autocomplete/json?key='+ key;
+var geocode = 'https://maps.googleapis.com/maps/api/geocode/json?key=' + key;
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200;
@@ -52,6 +56,7 @@ function handleEntityNotFound(res) {
   };
 }
 
+
 function handleError(res, statusCode) {
   statusCode = statusCode || 500;
   return function(err) {
@@ -64,6 +69,16 @@ export function index(req, res) {
   return Thing.find().exec()
     .then(respondWithResult(res))
     .catch(handleError(res));
+}
+// Get gelocation
+export function geocode(req, res){
+  console.log(req.query.address);
+  request(geocode + '&address=' + req.query.address, function (error, response, body) {
+    console.log(body);
+    if (!error && response.statusCode == 200) {
+        res.json(body);
+     }
+   })
 }
 
 // Gets a single Thing from the DB

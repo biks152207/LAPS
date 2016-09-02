@@ -21,96 +21,131 @@
       </div>
     </div>
   </div>
-  <div class="row">
+  <!-- <div class="row">
     <div class="col-sm-3">
     <div class="form-group">
         <label for="keywords">Based on</label><br/>
         <label class="radio-inline">
-          <input type="radio" name="searchOption" value="basedOnProfile" ng-checked="vm.searchParams()" ng-model="vm.basedOn">
+          <input type="radio" name="searchOption" value="basedOnProfile" ng-click="vm.searchParams()" ng-model="vm.basedOn">
           My Profile
         </label>
         <label class="radio-inline">
-          <input type="radio" name="searchOption" ng-checked="vm.searchParams()" value="customBased" ng-model="vm.basedOn"> Custom
+          <input type="radio" name="searchOption" ng-click="vm.searchParams()" value="customBased" ng-model="vm.basedOn" checked> Custom
         </label>
       </div>
-    </div>  
-  </div>
-  <div class="row">
-    <div class="col-sm-3">
-      <div id="member">
-        Roles<br/>
-        member location
-      </div>
-      <div id="custom">
+    </div>
+  </div> -->
+  <form novalidate="" name="searchForm" >
+    <div class="row">
+      <div class="col-sm-3">
+        <!-- <div id="member">
+          Roles<br/>
+          member location
+        </div> -->
         <div class="form-group">
-          <label for="keywords">Keyword(s)</label>
-          <input ng-model="vm.params.keywords" type="text" class="form-control" id="keywords" placeholder="" required>
+            <label for="keywords">Based on</label><br/>
+            <label class="radio-inline">
+              <input type="radio" name="searchOption" value="basedOnProfile" ng-click="vm.searchParams()" ng-model="vm.basedOn">
+              My Profile
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="searchOption" ng-click="vm.searchParams()" value="customBased" ng-model="vm.basedOn" checked> Custom
+            </label>
+          </div>
+        <div id="custom">
+          <div class="form-group">
+            <label for="keywords">Keyword(s)</label>
+            <input name="keywords" ng-model="vm.params.keywords" type="text" class="form-control" id="keywords" placeholder="" required>
+            <span class="text-warning" ng-messages="searchForm.keywords.$error" ng-if="searchForm.$submitted">
+              <p ng-message="required">
+                Please enter your keyword
+              </p>
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="keywords">Location</label>
+            <input type="text" ng-model="vm.params.Location" typeahead-on-select="vm.onSelect($item)" placeholder="" uib-typeahead="address.formatted_address for address in vm.getLocation($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control">
+               <i style="color:white" ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+               <div ng-show="noResults" style="color:#fff">
+                 <i class="glyphicon glyphicon-remove"></i> No Results Found
+               </div>
+
+            <!-- <input name="location" ng-model="vm.params.Location" type="text" class="form-control" id="keywords" placeholder="" required>
+            <span class="text-warning" ng-messages="searchForm.location.$error" ng-if="searchForm.$submitted">
+              <p ng-message="required">
+                Please enter location
+              </p>
+            </span> -->
+          </div>
+          <!-- <button class="btn">Update Results</button> -->
         </div>
-        <div class="form-group">
-          <label for="keywords">Location</label>
-          <input ng-model="vm.params.Location" type="text" class="form-control" id="keywords" placeholder="" required>
-        </div>
-        <button class="btn">Update Results</button>
-      </div>
-      <div class="form-group">
-        <label for="distance">Within</label>
-          <select class="form-control" id="distance" ng-model="vm.params.SearchRadiusMiles" ng-options="mile.value as mile.Name for mile in vm.miles">
-            <option value="">Select</option>
-          </select>
-      </div>
-      <div id="advanced" >
-        <div class="form-group">
-          <label for="salary-min">Salary Min</label>
-            <select class="form-control" id="salary-min" ng-options="minimum.value as minimum.Name for minimum in vm.minimumSalaryList" ng-model="vm.params.MinSalary">
+        <div class="form-group" >
+          <label for="distance">Within</label>
+            <select ng-disabled="true" name="SearchRadiusMiles" class="form-control" id="distance" ng-model="vm.params.SearchRadiusMiles" ng-options="mile.value as mile.Name for mile in vm.miles" >
               <option value="">Select</option>
             </select>
+            <span class="text-warning" ng-messages="searchForm.SearchRadiusMiles.$error" ng-if="searchForm.$submitted">
+              <p ng-message="required">
+                Please select
+              </p>
+            </span>
         </div>
-        <div class="form-group">
-          <label for="salary-max">Salary Max</label>
-            <select class="form-control" id="salary-max">
-              <option value=""></option>
-              <option value="20000">&pound;20,000</option>
-              <option value="30000">&pound;30,000</option>
-              <option value="40000">&pound;40,000</option>
-              <option value="50000">&pound;50,000</option>
-              <option value="60000">&pound;60,000</option>
-              <option value="70000">&pound;70,000</option>
-              <option value="80000">&pound;80,000</option>
-              <option value="90000">&pound;90,000</option>
-              <option value="999999">&pound;100,000+</option>
-            </select>
+        <div id="advanced" ng-if="vm.showMore" >
+          <div class="form-group">
+            <label for="salary-min">Salary Min</label>
+              <select class="form-control" id="salary-min" ng-options="minimum.value as minimum.Name for minimum in vm.minimumSalaryList" ng-model="vm.params.MinSalary">
+                <option value="">Select</option>
+              </select>
+          </div>
+          <div class="form-group">
+            <label for="salary-max">Salary Max</label>
+              <select class="form-control" id="salary-max" ng-options="max.value as max.Name for max in vm.maximumSalaryList" ng-model="vm.params.MaxSalary">
+                <option value="">Select</option>
+
+              </select>
+          </div>
+          <div class="form-group">
+            <label for="contract">Contract Type</label>
+              <select ng-model="vm.params.EmploymentType" class="form-control" id="contract" ng-options="employment.value as employment.Name for employment in vm.employmentList" >
+                <option value="">Select</option>
+              </select>
+          </div>
+          <div class="form-group">
+            <label for="working">Working Hours</label>
+              <select class="form-control" id="working"  ng-model="vm.params.WorkingHours">
+                <option value="">Select</option>
+                <option value="f">Full Time</option>
+                <option value="p">Part Time</option>
+              </select>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="contract">Contract Type</label>
-            <select class="form-control" id="contract" multiple>
-              <option value=""></option>
-              <option value="P">Permanent</option>
-              <option value="T">Temporary</option>
-              <option value="C">Contract</option>
-            </select>
-        </div>
-        <div class="form-group">
-          <label for="working">Working Hours</label>
-            <select class="form-control" id="working" multiple>
-              <option value=""></option>
-              <option value="F">Full Time</option>
-              <option value="P">Part Time</option>
-            </select>
+        <a class="btn btn-info" data-toggle="collapse" ng-show="!vm.showMore" ng-click="vm.showMore = !vm.showMore">More Search options</a>
+        <br>
+        <br>
+        <button ng-disabled="vm.submitted"  ng-click="vm.searchJob(searchForm, vm.params)" type="submit" class="btn pull-left btn-success">Search</button>
+        <i ng-if="vm.submitted" class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+
+      </div>
+
+      <div class="col-sm-9">
+        <div ng-repeat="job in vm.jobsLists">
+          <h3>{{job.JobTitle}}</h3>
+            <button class="btn pull-right">Find out more</button>
+          <ul>
+            <li ng-if="job.JobLocation">{{job.JobLocation}}</li>
+            <li ng-if="job.SalaryDescription">{{job.SalaryDescription}}</li>
+            <li>{{job.PublishFrom | date:'yyyy-MM-dd'}}</li>
+          </ul>
+          <p>{{job.JobSummary}}</p>
+
         </div>
       </div>
-      <button class="btn" data-toggle="collapse" data-target="#advanced">More Search options</button>
     </div>
-    <div class="col-sm-9">
-      <div>
-        <h3>job_title</h3>
-        <ul>
-          <li>job_location</li>
-          <li>salary_description</li>
-          <li>publish_from</li>
-        </ul>
-        <p>job_summary</p>
-        <button class="btn pull-right">Find out more</button>
+    <!-- <div class="row">
+      <div class="col-sm-3">
+        <br>
+        <button  ng-click="vm.searchJob(searchForm, vm.params)" type="submit" class="btn pull-left btn-success">Search</button>
       </div>
-    </div>
-  </div>
+    </div> -->
+</form>
 </div>

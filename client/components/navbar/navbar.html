@@ -21,9 +21,9 @@
         <li ng-hide="nav.isLoggedIn()" ui-sref-active="active" ><a ui-sref="signup">Sign up</a></li>
         <li ng-hide="nav.isLoggedIn()" ui-sref-active="active" ><a ui-sref="login">Login</a></li>
         <li ng-if="nav.isLoggedIn()" ui-sref-active="active" ><a href="#">Advice</a></li>
-        <li ng-if="nav.isLoggedIn()" ui-sref-active="active"><a href="#">Roles</a></li>
+        <li ng-if="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="roles.sector">Roles</a></li>
         <li ng-if="nav.isLoggedIn()" ui-sref-active="active"><a href="#">Videos</a></li>
-        <li ng-if="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="jobs">Jobs</a></li>
+        <li ng-if="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="jobs.list">Jobs</a></li>
         <li ng-if="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="parent.profile">My Profile</a></li>
         <li ng-if="nav.isLoggedIn()" role="separator" class="divider"></li>
         <li  ng-if="nav.isLoggedIn()"><p class="navbar-text">Hello {{ nav.getCurrentUser().username }}</p> </li>
