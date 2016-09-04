@@ -80,8 +80,9 @@
           <!-- <button class="btn">Update Results</button> -->
         </div>
         <div class="form-group" >
+          {{vm.params}}
           <label for="distance">Within</label>
-            <select ng-disabled="true" name="SearchRadiusMiles" class="form-control" id="distance" ng-model="vm.params.SearchRadiusMiles" ng-options="mile.value as mile.Name for mile in vm.miles" >
+            <select  name="SearchRadiusMiles" class="form-control" id="distance" ng-model="vm.params.SearchRadiusMiles" ng-options="mile.value as mile.Name for mile in vm.miles" >
               <option value="">Select</option>
             </select>
             <span class="text-warning" ng-messages="searchForm.SearchRadiusMiles.$error" ng-if="searchForm.$submitted">
@@ -130,7 +131,7 @@
       <div class="col-sm-9">
         <div ng-repeat="job in vm.jobsLists">
           <h3>{{job.JobTitle}}</h3>
-            <button class="btn pull-right">Find out more</button>
+            <a ui-sref="jobs.id({Id: job.Id})" class="btn btn-info pull-right">Find out more</a>
           <ul>
             <li ng-if="job.JobLocation">{{job.JobLocation}}</li>
             <li ng-if="job.SalaryDescription">{{job.SalaryDescription}}</li>

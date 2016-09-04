@@ -1,3 +1,72 @@
-<p>
-  test
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="clearfix">
+        <!-- <div id="breadcrumb" class="pull-left">
+          {{vm.job.JobTitle}}
+        </div> -->
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <!-- <i>call /laps/v1/members/getjob to get data</i><br/> -->
+    <!-- <i>also call /laps/v1/members/recordjobview after page rendered</i> -->
+    <div class="col-sm-6">
+      <h1>{{vm.job.JobTitle}}</h1>
+      {{vm.job.JobLocation}}
+      <h2>Details</h2>
+      <p>{{vm.job.JobSummary}}</p>
+
+      <strong>Contract Type</strong> Permanent<br/>
+      <strong>Working Hours</strong> Full time<br/>
+      <strong>Salary</strong> {{vm.job.SalaryDescription}}<br/>
+      <strong>Benefits</strong> benefits<br/>
+      <strong>Posted</strong> {{vm.job.PublishFrom}}<br/>
+      <strong>Closing Date</strong> publish_to<br/>
+      <strong>Start date</strong> job_start_date_description<br/>
+
+      <h2>Contact</h2>
+      <p>{{vm.job.Client.FirstName + ' ' + vm.job.Client.LastName}}<br/>
+      {{vm.job.Client.Phone}}</br>
+      {{vm.job.Client.Email}}</p>
+
+      <strong>Reference</strong> source_reference<br/>
+      <strong>Visa Required</strong> job_visa<br/>
+    </div>
+    <div class="col-sm-6">
+      <div id="apply">
+        <h2>Apply Now</h2>
+        <div class="form-group">
+          <label for="cv">Covering Letter</label>
+          <textarea class="form-control" rows="6" id="covering letter"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="cv">Upload your CV</label><i>/laps/v1/members/setuploadedcv</i>
+          <input type="file" id="cv">
+          <p class="help-block">PDF, MS Word documents accepted</p>
+        </div>
+        <h4>Or</h4>
+        <div class="form-group">
+          <label for="cv-built">Use a CV you have previously uploaded</label>
+          <i>/laps/v1/members/getuploadedcvs</i>
+          <select class="form-control" id="cv-built">
+              <option value=""></option>
+              <option value="id" checked>CV Name</option>
+            </select>
+        </div>
+        <h4>Or</h4>
+        <div class="form-group">
+          <label for="cv-built">Use a CV you have created</label>
+          <i>on apply call /laps/v1/members/getCVs</i>
+          <select class="form-control" id="cv-built">
+              <option value=""></option>
+              <option value="id" checked>CV Name</option>
+            </select>
+        </div>
+        <button class="btn">Apply</button>
+        <i>on apply call /laps/v1/members/setjobapplication</i><br/>
+        <i>if application passes validation call /laps/v1/members/sendjobapplication</i>
+      </div>
+    </div>
+  </div>
+</div>

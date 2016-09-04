@@ -5,9 +5,13 @@
 
   function jobsCtrl(jsonData, $http, HttpService){
     // Search model
-    this.params = null;
+    this.params = {};
     // Default search parameters
     this.basedOn = "customBased";
+
+    // Profile information
+    // this.profileData = profileData;
+    // this.params.Location = angular.copy(this.profileData.AddressLines);
     // Search parameters
     this.searchCriteria = {
       basedOnProfile:{
@@ -49,7 +53,6 @@
 
     function searchParams(){
       this.params = this.searchCriteria[this.basedOn];
-      console.log(this.params);
     }
 
     function searchJob(form, searchParams){

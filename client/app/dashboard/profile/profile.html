@@ -1,5 +1,5 @@
 <div>
-    <form name="profileForm" novalidate="" ng-submit="vm.profileUpdate(profileForm)">
+    <form name="profileForm" novalidate="" ng-submit="vm.profileUpdate(profileForm, vm.profile)">
       <div class="row">
         <div class="col-sm-offset-1 col-sm-5">
           <div class="form-group">
@@ -34,7 +34,7 @@
           <div class="form-group">
             <label for="sport">Sport</label>
             <select required="" name="sport" ng-options="sport.Id as sport.Name for sport in vm.sports " class="form-control" id="sport" ng-model="vm.profile.Sport">
-              <option value="">Select</option>
+              <option  value="">Select</option>
             </select>
             <span class="text-warning" ng-messages="profileForm.sport.$error" ng-if="profileForm.$submitted">
               <p ng-message="required">Please choose sports</p>
@@ -100,7 +100,7 @@
             </div>
         </div>
       </div>
-      
+
       <div class="row">
         <div class="col-sm-offset-5 col-sm-5">
           <div class="clearfix">

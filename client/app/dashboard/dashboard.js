@@ -9,8 +9,21 @@
             authRequire: true,
             templateUrl: 'app/dashboard/dashboard.html',
             resolve: {
-              userProfileData: function(HttpService, $rootScope){
-                return HttpService.post('/members/getmember', {Id: $rootScope.currentUser.userId});
+              userProfileData: function(HttpService, $rootScope, $q, cacheData){
+                var defer = $q.defer();
+                var cacheProfileData = cacheData.get('profile');
+                if (_.isEmpty(cacheProfileData)){
+                  HttpService.post('/members/getmember', {Id: $rootScope.currentUser.userId})
+                    .then(
+                      (response) =>{
+                        defer.resolve(response);
+                      }
+                    )
+                }else{
+                  defer.resolve(cacheProfileData);
+                }
+                // return HttpService.post('/members/getmember', {Id: $rootScope.currentUser.userId});
+                return defer.promise;
               },
               sportsData: function(HttpService){
                 return HttpService.post('/content/getsports');
