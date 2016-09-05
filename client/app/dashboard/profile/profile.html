@@ -1,21 +1,28 @@
 <div>
     <form name="profileForm" novalidate="" ng-submit="vm.profileUpdate(profileForm, vm.profile)">
+      <fieldset ng-disabled="vm.submitted">
       <div class="row">
         <div class="col-sm-offset-1 col-sm-5">
           <div class="form-group">
             <label for="fname">First name</label>
-            <input ng-model="vm.profile.FirstName" type="text" class="form-control" id="fname" required>
-            <span class="text-warning" ng-messages="profileForm.fname.$error" ng-if="profileForm.$submitted">
+            <input database-error ng-model="vm.profile.FirstName" type="text" class="form-control" id="FirstName" required>
+            <span class="text-warning" ng-messages="profileForm.FirstName.$error" ng-if="profileForm.$submitted">
               <p ng-message="required">Please enter your first name</p>
+            </span>
+            <span class="text-warning" ng-if="profileForm.FirstName.$error.database">
+              {{vm.errors.FirstName}}
             </span>
           </div>
         </div>
         <div class="col-sm-4">
           <div class="form-group">
             <label for="lname">Last name</label>
-            <input ng-model="vm.profile.LastName" name="lname" type="text" class="form-control" id="lname"  required>
-            <span class="text-warning" ng-messages="profileForm.lname.$error" ng-if="profileForm.$submitted">
+            <input database-error ng-model="vm.profile.LastName" name="LastName" type="text" class="form-control" id="lname"  required>
+            <span class="text-warning" ng-messages="profileForm.LastName.$error" ng-if="profileForm.$submitted">
               <p ng-message="required">Please enter your last name</p>
+            </span>
+            <span class="text-warning" ng-if="profileForm.LastName.$error.database">
+              {{vm.errors.FirstName}}
             </span>
           </div>
         </div>
@@ -24,18 +31,24 @@
         <div class="col-sm-offset-1 col-sm-5">
           <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
-            <input type="email" ng-model="vm.profile.DisplayEmail" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email" disabled>
-            <span class="text-warning" ng-messages="profileForm.email.$error" ng-if="profileForm.$submitted">
+            <input database-error type="email" ng-model="vm.profile.DisplayEmail" name="DisplayEmail" class="form-control" id="exampleInputEmail1" placeholder="Email" disabled>
+            <span class="text-warning" ng-messages="profileForm.DisplayEmail.$error" ng-if="profileForm.$submitted">
               <p ng-message="required">Please enter your email address</p>
+            </span>
+            <span class="text-warning" ng-if="profileForm.DisplayEmail.$error.database">
+              {{vm.errors.FirstName}}
             </span>
           </div>
         </div>
         <div class="col-sm-4">
           <div class="form-group">
             <label for="sport">Sport</label>
-            <select required="" name="sport" ng-options="sport.Id as sport.Name for sport in vm.sports " class="form-control" id="sport" ng-model="vm.profile.Sport">
-              <option  value="">Select</option>
+            <select required  class="form-control" name="sport" ng-model="vm.selectedSports" multiple>
+              <option  ng-class="{'selectedSports': vm.sportDefaultCheckIn(sport.Id)}" ng-value="sport.Id" ng-repeat="sport in vm.sports">{{sport.Name}}</option>
             </select>
+            <!-- <select required="" name="sport" ng-options="sport.Id as sport.Name for sport in vm.sports " class="form-control" id="sport" ng-model="vm.profile.SportIds">
+              <option  value="">Select</option>
+            </select> -->
             <span class="text-warning" ng-messages="profileForm.sport.$error" ng-if="profileForm.$submitted">
               <p ng-message="required">Please choose sports</p>
             </span>
@@ -44,46 +57,64 @@
         <div class="col-sm-offset-1 col-sm-5">
           <div class="form-group">
             <label for="address1">Address</label>
-            <input required="" type="text" class="form-control" name="address" id="address1" placeholder="" ng-model="vm.profile.AddressLines">
-            <span class="text-warning" ng-messages="profileForm.address.$error" ng-if="profileForm.$submitted">
+            <input database-error required="" type="text" class="form-control" name="AddressLines" id="address1" placeholder="" ng-model="vm.profile.AddressLines">
+            <span class="text-warning" ng-messages="profileForm.AddressLines.$error" ng-if="profileForm.$submitted">
               <p ng-message="required">Please enter your address</p>
+            </span>
+            <span class="text-warning" ng-if="profileForm.AddressLines.$error.database">
+              {{vm.errors.AddressLines}}
             </span>
           </div>
           <div class="form-group">
             <label for="city">Town/City</label>
-            <input required="" type="text" class="form-control" name="city" id="city" placeholder="" ng-model="vm.profile.TownOrCity">
-            <span class="text-warning" ng-messages="profileForm.city.$error" ng-if="profileForm.$submitted">
+            <input database-error required="" type="text" class="form-control" name="TownOrCity" id="city" placeholder="" ng-model="vm.profile.TownOrCity">
+            <span class="text-warning" ng-messages="profileForm.TownOrCity.$error" ng-if="profileForm.$submitted">
               <p ng-message="required">Please enter your city</p>
+            </span>
+            <span class="text-warning" ng-if="profileForm.TownOrCity.$error.database">
+              {{vm.errors.TownOrCity}}
             </span>
           </div>
           <div class="form-group">
             <label for="pcode">Postcode</label>
-            <input required="" type="text" class="form-control" name="pcode" id="pcode" placeholder="" ng-model="vm.profile.Postcode">
-            <span class="text-warning" ng-messages="profileForm.pcode.$error" ng-if="profileForm.$submitted">
+            <input database-error  type="text" class="form-control" name="Postcode" id="pcode" placeholder="" ng-model="vm.profile.Postcode">
+            <span class="text-warning" ng-messages="profileForm.Postcode.$error" ng-if="profileForm.$submitted">
               <p ng-message="required">Please enter your postal code</p>
+            </span>
+            <span class="text-warning" ng-if="profileForm.Postcode.$error.database">
+              {{vm.errors.Postcode}}
             </span>
           </div>
         </div>
         <div class="col-sm-4">
           <div class="form-group">
             <label for="home">Home Phone</label>
-            <input required="" type="text" class="form-control" name="homeph" id="home" placeholder="" ng-model="vm.profile.HomePhone">
-            <span class="text-warning" ng-messages="profileForm.homeph.$error" ng-if="profileForm.$submitted">
+            <input database-error required="" type="text" class="form-control" name="HomePhone" id="home" placeholder="" ng-model="vm.profile.HomePhone">
+            <span class="text-warning" ng-messages="profileForm.HomePhone.$error" ng-if="profileForm.$submitted">
               <p ng-message="required">Please enter your home number</p>
+            </span>
+            <span class="text-warning" ng-if="profileForm.HomePhone.$error.database">
+              {{vm.errors.FirstName}}
             </span>
           </div>
           <div class="form-group">
             <label for="work">Work Phone</label>
-            <input required="" type="text" class="form-control" name="workph" id="work" placeholder="" ng-model="vm.profile.WorkPhone">
-            <span class="text-warning" ng-messages="profileForm.workph.$error" ng-if="profileForm.$submitted">
+            <input database-error required="" type="text" class="form-control" name="WorkPhone" id="work" placeholder="" ng-model="vm.profile.WorkPhone">
+            <span class="text-warning" ng-messages="profileForm.WorkPhone.$error" ng-if="profileForm.$submitted">
               <p ng-message="required">Please enter your work number</p>
+            </span>
+            <span class="text-warning" ng-if="profileForm.WorkPhone.$error.database">
+              {{vm.errors.WorkPhone}}
             </span>
           </div>
           <div class="form-group">
             <label for="mobile">Mobile Number</label>
-            <input required="" type="text" class="form-control" name="mobph" id="mobile" placeholder="" ng-model="vm.profile.MobilePhone">
-            <span class="text-warning" ng-messages="profileForm.mobph.$error" ng-if="profileForm.$submitted">
+            <input database-error required="" type="text" class="form-control" name="MobilePhone" id="mobile" placeholder="" ng-model="vm.profile.MobilePhone">
+            <span class="text-warning" ng-messages="profileForm.MobilePhone.$error" ng-if="profileForm.$submitted">
               <p ng-message="required">Please enter your mobile number</p>
+            </span>
+            <span class="text-warning" ng-if="profileForm.MobilePhone.$error.database">
+              {{vm.errors.MobilePhone}}
             </span>
           </div>
         </div>
@@ -97,16 +128,19 @@
               <span class="text-warning" ng-messages="profileForm.roles.$error" ng-if="profileForm.$submitted">
                 <p ng-message="required">Please choose the roles</p>
               </span>
+              <span class="text-warning" ng-if="profileForm.FirstName.$error.database">
+                {{vm.errors.FirstName}}
+              </span>
             </div>
         </div>
       </div>
+    </fieldset>
 
       <div class="row">
         <div class="col-sm-offset-5 col-sm-5">
           <div class="clearfix">
-            <button type="submit" class="btn btn-info">Update</button>
+            <button type="submit" class="btn btn-info">Update <i ng-if="vm.submitted" class="fa fa-circle-o-notch fa-spin fa-1x fa-fw"></i></button>
           </div>
         </div>
       </div>
   </form>
-</div>

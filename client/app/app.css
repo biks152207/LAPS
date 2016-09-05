@@ -102,6 +102,10 @@ div.m-app-loading p {
   transform: translateY(-50%);
   width: 100%;
 }
+.selectedSports {
+  background-color: #D4D4D4;
+  color: #000000;
+}
 
 @import url("https://fonts.googleapis.com/css?family=Raleway:400,700");/*!
  * bootswatch v3.3.7

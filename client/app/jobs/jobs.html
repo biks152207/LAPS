@@ -80,7 +80,6 @@
           <!-- <button class="btn">Update Results</button> -->
         </div>
         <div class="form-group" >
-          {{vm.params}}
           <label for="distance">Within</label>
             <select  name="SearchRadiusMiles" class="form-control" id="distance" ng-model="vm.params.SearchRadiusMiles" ng-options="mile.value as mile.Name for mile in vm.miles" >
               <option value="">Select</option>

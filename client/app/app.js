@@ -2,7 +2,7 @@
 
 angular.module('lapsApp', ['lapsApp.auth', 'lapsApp.admin', 'lapsApp.constants', 'ngCookies',
     'ngResource', 'ngSanitize', 'ui.router', 'ui.bootstrap', 'validation.match',
-    'ngMessages', 'ngStorage'
+    'ngMessages', 'ngStorage', 'ui-notification'
   ])
   .config(function($urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider.otherwise('/');
