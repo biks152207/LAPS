@@ -4,7 +4,7 @@ angular.module('lapsApp')
   .config(function ($stateProvider) {
     $stateProvider
       .state('roles', {
-        url: '/roles',
+        url: '/sectors',
         abstract: true,
         authRequire: true,
         templateUrl: 'app/roles/header.html',
@@ -15,15 +15,25 @@ angular.module('lapsApp')
         }
       })
       .state('roles.sector', {
-        url: '/sectors',
+        url: '/',
         templateUrl: 'app/roles/roles.html',
         controller: 'rolesCtrl',
         controllerAs: 'vm',
         authRequire: true
       })
       .state('roles.roleList', {
-        url: '/sectors',
-        template: '<roles></roles>',
+        url: '/:SectorId',
+        templateUrl: 'app/roles/role.html',
+        resolve: {
+          roles: function(HttpService, $stateParams){
+            return HttpService.post('/content/getroles', $stateParams);
+          },
+          choosenSector: function(sectorLists, $stateParams){
+            return sectorLists.filter((sector) => sector.Id == $stateParams.SectorId);
+          }
+        },
+        controllerAs:'vm',
+        controller: 'eachRoleCtrl',
         authRequire: true
       })
       .state('roles.info', {

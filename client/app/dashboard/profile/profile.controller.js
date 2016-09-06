@@ -6,6 +6,7 @@
   function ProfileCtrl(HttpService, userProfileData, sportsData, rolesData, cacheData, $scope, Notify){
     // Profile data
     this.profile = userProfileData;
+    console.log(userProfileData);
     delete this.profile.GeocodingState;
     delete this.profile.JobNotificationState;
     // Storing profile information

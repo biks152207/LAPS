@@ -52,6 +52,7 @@
               <input type="radio" name="searchOption" ng-click="vm.searchParams()" value="customBased" ng-model="vm.basedOn" checked> Custom
             </label>
           </div>
+        <fieldset ng-if="vm.basedOn == 'customBased'">
         <div id="custom">
           <div class="form-group">
             <label for="keywords">Keyword(s)</label>
@@ -119,9 +120,10 @@
               </select>
           </div>
         </div>
-        <a class="btn btn-info" data-toggle="collapse" ng-show="!vm.showMore" ng-click="vm.showMore = !vm.showMore">More Search options</a>
-        <br>
-        <br>
+      </fieldset>
+        <a class="btn btn-info" data-toggle="collapse" ng-show="!vm.showMore" ng-if="vm.basedOn == 'customBased'" ng-click="vm.showMore = !vm.showMore">More Search options</a>
+        <br ng-if="vm.basedOn == 'customBased'">
+        <br ng-if="vm.basedOn == 'customBased'">
         <button ng-disabled="vm.submitted"  ng-click="vm.searchJob(searchForm, vm.params)" type="submit" class="btn pull-left btn-success">Search</button>
         <i ng-if="vm.submitted" class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
 

@@ -3,11 +3,11 @@
   angular.module('lapsApp')
     .controller('jobsCtrl', jobsCtrl);
 
-  function jobsCtrl(jsonData, $http, HttpService){
+  function jobsCtrl(jsonData, $http, HttpService, $rootScope){
     // Search model
     this.params = {};
     // Default search parameters
-    this.basedOn = "customBased";
+    this.basedOn = "basedOnProfile";
 
     // Profile information
     // this.profileData = profileData;
@@ -15,7 +15,7 @@
     // Search parameters
     this.searchCriteria = {
       basedOnProfile:{
-        Roles: [1, 2]
+        Id: $rootScope.currentUser.userId
       },
       customBased : {}
     }
@@ -56,10 +56,15 @@
     }
 
     function searchJob(form, searchParams){
-      console.log(searchParams);
       if (form.$valid){
+        var url;
+        if (this.basedOn == 'customBased'){
+          url = '/members/getjoblist';
+        }else{
+          url = '/members/getjoblistbasedonmemberinterests';
+        }
         this.submitted = true;
-        HttpService.post('/members/getjoblist', searchParams)
+        HttpService.post(url, searchParams)
           .then(
             (response) => {
               this.jobsLists = response;

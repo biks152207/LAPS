@@ -12,10 +12,13 @@
     <div class="col-xs-12">
       <div>
         <h1>Choose a Sector</h1>
-        <ul>
-          <li ng-repeat="sector in vm.sectorLists"><a href="#">{{sector.Name}}</a></li>
-
+        <ul class="list-group">
+          <li ng-repeat="sector in vm.sectorLists" class="list-group-item">{{sector.Name}} <a ui-sref="roles.roleList({SectorId: sector.Id})" class="btn btn-info btn-sm">View Roles</a></li>
         </ul>
+        <!-- <ul>
+          <li ng-repeat="sector in vm.sectorLists"><a href="#">{{sector.Name}}</a> <button class="btn btn-info btn-sm">View Roles</button>
+</li>
+        </ul> -->
       </div>
     </div>
   </div>

@@ -123,6 +123,7 @@
         <div class="col-sm-offset-3 col-sm-5">
             <div class="form-group">
               <label for="sport">Roles interested in</label>
+              {{vm.profile.InterestedRoles}}
               <select required="" class="form-control" ng-options='role.Id as role.Name for role in vm.rolesData' id="sport" multiple ng-model="vm.profile.InterestedRoles" name="roles">
               </select>
               <span class="text-warning" ng-messages="profileForm.roles.$error" ng-if="profileForm.$submitted">
