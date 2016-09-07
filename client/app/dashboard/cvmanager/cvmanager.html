@@ -10,14 +10,14 @@
                 <option value="">Choose cv</option>
               </select>
               <label for="sport" ng-if="vm.new">CV title</label>
-              <input type="text" class="form-control" ng-if="vm.new" name="Name" required ng-model="vm.cvData.Name">
+              <input type="text" class="form-control" ng-if="vm.new" name="Name" required ng-model="vm.cvData.Overview[0].name">
 
             </div>
           </div>
           <div class="col-sm-8">
             <div class="form-group">
 
-              <button class="btn">Open</button>
+              <button class="btn" ng-click="vm.new = false;">Open</button>
               <button ng-click="vm.new = true;" class="btn">New</button>
               <button class="btn">Import</button>
           </div>
@@ -25,11 +25,11 @@
         </div>
         <div class="form-group">
           <label for="statment">Personal Statement</label>
-          <textarea class="form-control" rows="6" id="statment"></textarea>
+          <textarea ng-model="vm.cvData.Overview[0].PersonalStatement" class="form-control" rows="6" id="statment"></textarea>
         </div>
         <div class="form-group">
           <label for="statment">Objectives</label>
-          <textarea class="form-control" rows="6" id="statment"></textarea>
+          <textarea ng-model="vm.cvData.Overview[0].Objectives" class="form-control" rows="6" id="statment"></textarea>
         </div>
         <h4>Employment</h4>
         <div class="employment">
@@ -156,11 +156,11 @@
         </div>
         <div class="form-group">
           <label for="statment">Hobbies</label>
-          <textarea class="form-control" rows="6" id="statment"></textarea>
+          <textarea ng-model="vm.cvData.Overview[0].Hobbies" class="form-control" rows="6" id="statment"></textarea>
         </div>
         <div class="form-group">
           <label for="statment">Other</label>
-          <textarea class="form-control" rows="6" id="statment"></textarea>
+          <textarea class="form-control" ng-model="vm.cvData.Overview[0].Other" rows="6" id="statment"></textarea>
         </div>
         <button class="btn">Save CV</button>
       </div>

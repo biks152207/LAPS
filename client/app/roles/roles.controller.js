@@ -9,6 +9,7 @@ angular.module('lapsApp')
 function rolesCtrl(sectorLists){
 
   this.sectorLists = sectorLists;
+  console.log(this.sectorLists);
 }
 
 })();
