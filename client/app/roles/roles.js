@@ -10,7 +10,7 @@ angular.module('lapsApp')
         templateUrl: 'app/roles/header.html',
         resolve: {
           sectorLists: function(HttpService){
-            return HttpService.post('/content/getsectors');
+            return HttpService.get('/wp/v2/sectors');
           }
         }
       })
@@ -29,7 +29,9 @@ angular.module('lapsApp')
             return HttpService.post('/content/getroles', $stateParams);
           },
           choosenSector: function(sectorLists, $stateParams){
-            return sectorLists.filter((sector) => sector.Id == $stateParams.SectorId);
+            console.log('i am here sector');
+            console.log(sectorLists);
+            return sectorLists.filter((sector) => sector.id == $stateParams.SectorId);
           }
         },
         controllerAs:'vm',
@@ -37,8 +39,8 @@ angular.module('lapsApp')
         authRequire: true
       })
       .state('roles.info', {
-        url: '/sectors',
-        template: '<roles></roles>',
+        url: '/role/info',
+        templateUrl: 'app/roles/rol.html',
         authRequire: true
       });
   });

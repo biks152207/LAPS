@@ -58,7 +58,13 @@
             url: '/cv-manager',
             templateUrl: 'app/dashboard/cvmanager/cvmanager.html',
             controller: 'cvManagerCtrl',
-            authRequire: true
+            authRequire: true,
+            controllerAs: 'vm',
+            resolve:{
+              listOfCvs: function(HttpService, $rootScope){
+                return HttpService.post('/members/getcvs', {Id: $rootScope.currentUser.userId});
+              }
+            }
           })
     })
 })();

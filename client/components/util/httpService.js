@@ -13,7 +13,7 @@
     // Function for crude operation with remote api
     function get(uri){
       return $q(function(resolve, reject){
-        $http.get(appConfig.baseUri + uri)
+        $http.get(appConfig.baseUri2 + uri)
           .then(function(data){
             resolve(data.data);
           }, function(err){

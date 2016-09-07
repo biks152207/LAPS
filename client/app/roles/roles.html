@@ -13,7 +13,7 @@
       <div>
         <h1>Choose a Sector</h1>
         <ul class="list-group">
-          <li ng-repeat="sector in vm.sectorLists" class="list-group-item">{{sector.Name}} <a ui-sref="roles.roleList({SectorId: sector.Id})" class="btn btn-info btn-sm">View Roles</a></li>
+          <li ng-repeat="sector in vm.sectorLists" class="list-group-item">{{sector.title.rendered}} <a ui-sref="roles.roleList({SectorId: sector.id})" class="btn btn-info btn-sm">View Roles</a></li>
         </ul>
         <!-- <ul>
           <li ng-repeat="sector in vm.sectorLists"><a href="#">{{sector.Name}}</a> <button class="btn btn-info btn-sm">View Roles</button>

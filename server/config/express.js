@@ -33,7 +33,7 @@ import mongoose from 'mongoose';
 //       return next();
 // };
 var cors = require('cors');
-var MongoStore = connectMongo(session);
+// var MongoStore = connectMongo(session);
 
 export default function(app) {
   var env = app.get('env');
@@ -65,11 +65,7 @@ export default function(app) {
   app.use(session({
     secret: config.secrets.session,
     saveUninitialized: true,
-    resave: false,
-    store: new MongoStore({
-      mongooseConnection: mongoose.connection,
-      db: 'laps'
-    })
+    resave: false
   }));
 
   /**

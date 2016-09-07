@@ -11,12 +11,12 @@
   <div class="row">
     <div class="col-xs-12">
       <div>
-        <h4>{{vm.choosenSector[0].Name}}</h4>
-        <!-- <p>acf.general_overview</p>
-        <h3>Salary Range</h3>
-        <p>acf.salary_range</p>
+        <h4>{{vm.choosenSector[0].title.rendered}}</h4>
+        <p>{{vm.choosenSector[0].acf.general_overview}}</p>
+        <h3>Salary Range: </h3>
+        <p>{{vm.choosenSector[0].acf.salary_range}}</p>
         <h3>Suitability</h3>
-        <p>acf.suitablility</p> -->
+        <p>{{vm.choosenSector[0].acf.suitability}}</p>
         <h3>Roles</h3>
         <ul class="list-group">
           <li ng-repeat="role in vm.roles" class="list-group-item">{{role.Name}} <a ui-sref="roles.roleList({SectorId: sector.Id})" class="btn btn-info btn-sm">View Roles</a></li>

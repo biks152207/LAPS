@@ -17,15 +17,28 @@
     // Roles data
     this.rolesData = rolesData;
 
+    // Getting roles for the user
+
     // Get user's intersted roles
-    this.roles = () => {
+    this.roles = function(){
       HttpService.post('/members/getroles', {Id: this.profile.Id})
         .then(
           (result) =>{
+            console.log('here we are')
             console.log(result);
           }
         )
     }
+    this.roles();
+
+    // this.roles = () => {
+    //   HttpService.post('/members/getroles', {Id: this.profile.Id})
+    //     .then(
+    //       (result) =>{
+    //         console.log(result);
+    //       }
+    //     )
+    // }
 
     //Copy the selected sports
     this.selectedSports = [];

@@ -3,19 +3,24 @@
       <div class="col-xs-12">
         <h2>CV Builder</h2>
         <div class="row">
-          <div class="col-sm-4">
+          <div class="col-sm-4" >
             <div class="form-group">
-              <label for="sport">CVs</label>
-              <select class="form-control" id="sport">
-                <option value=""></option>
-                <option value="1">Saved CV</option>
+              <label for="sport" ng-if="!vm.new">CVs</label>
+              <select ng-if="!vm.new" class="form-control" id="sport" ng-options="cv.Id as cv.Name for cv in vm.listOfCvs" ng-model="vm.selectedCv">
+                <option value="">Choose cv</option>
               </select>
+              <label for="sport" ng-if="vm.new">CV title</label>
+              <input type="text" class="form-control" ng-if="vm.new" name="Name" required ng-model="vm.cvData.Name">
+
             </div>
           </div>
           <div class="col-sm-8">
-            <button class="btn">Open</button>
-            <button class="btn">New</button>
-            <button class="btn">Import</button>
+            <div class="form-group">
+
+              <button class="btn">Open</button>
+              <button ng-click="vm.new = true;" class="btn">New</button>
+              <button class="btn">Import</button>
+          </div>
           </div>
         </div>
         <div class="form-group">

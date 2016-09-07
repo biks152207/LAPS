@@ -3,8 +3,15 @@
   angular.module('lapsApp')
     .controller('cvManagerCtrl', CvCtrl);
 
-  function CvCtrl(){
-    this.name = 'CV';
+  function CvCtrl(listOfCvs, $rootScope){
+    console.log('getting cvs');
+    console.log(listOfCvs);
+    this.cvData = {
+      MemberId: $rootScope.currentUser.userId
+    };
+    // List of cvs
+    this.listOfCvs = listOfCvs;
+    this.new = false;
   }
 
 })();
