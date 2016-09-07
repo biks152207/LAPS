@@ -1,103 +1,166 @@
 <div>
       <div class="row">
-      <div class="col-xs-12">
-        <h2>CV Builder</h2>
+      <div class="col-xs-offset-1 col-xs-9">
+        <form novalidate="" name="cvManager">
         <div class="row">
           <div class="col-sm-4" >
             <div class="form-group">
-              <label for="sport" ng-if="!vm.new">CVs</label>
-              <select ng-if="!vm.new" class="form-control" id="sport" ng-options="cv.Id as cv.Name for cv in vm.listOfCvs" ng-model="vm.selectedCv">
-                <option value="">Choose cv</option>
+              <label ng-if="vm.new == 1">Choose CV</label>
+              <select ng-change="vm.pullCv(vm.selectedCv)" ng-if="vm.new == 1" class="form-control" id="sport" ng-options="cv.Id as cv.Name for cv in vm.listOfCvs" ng-model="vm.selectedCv">
+                <option value="">Select</option>
               </select>
-              <label for="sport" ng-if="vm.new">CV title</label>
-              <input type="text" class="form-control" ng-if="vm.new" name="Name" required ng-model="vm.cvData.Overview[0].name">
+              <label for="sport" ng-if="vm.new == 2">CV title</label>
+              <input type="text" class="form-control" ng-if="vm.new == 2" name="Name" required ng-model="vm.cvData.Overview[0].name">
+              <span class="text-warning" ng-messages="cvManager.name.$error" ng-if="cvManager.$submitted">
+                <p ng-message="required">Enter CV Name</p>
+              </span>
 
             </div>
           </div>
           <div class="col-sm-8">
             <div class="form-group">
-
-              <button class="btn" ng-click="vm.new = false;">Open</button>
-              <button ng-click="vm.new = true;" class="btn">New</button>
-              <button class="btn">Import</button>
+              <br>
+              <button  type="button" ng-class="{active: vm.new == 1}" class="btn btn-default " ng-click="vm.new = 1;">Open</button>
+              <button type="button" ng-class="{active: vm.new == 2}" ng-click="vm.new = 2;" class="btn btn-default">New</button>
+              <button type="button"   class="btn btn-default">Import</button>
           </div>
           </div>
         </div>
         <div class="form-group">
           <label for="statment">Personal Statement</label>
-          <textarea ng-model="vm.cvData.Overview[0].PersonalStatement" class="form-control" rows="6" id="statment"></textarea>
+          <textarea required ng-model="vm.cvData.Overview[0].PersonalStatement" name="PersonalStatement" class="form-control" rows="6" id="statment"></textarea>
+          <span class="text-warning" ng-messages="cvManager.PersonalStatement.$error" ng-if="cvManager.$submitted">
+                <p ng-message="required">Enter Your Personal Statement</p>
+          </span>
         </div>
         <div class="form-group">
           <label for="statment">Objectives</label>
-          <textarea ng-model="vm.cvData.Overview[0].Objectives" class="form-control" rows="6" id="statment"></textarea>
+          <textarea ng-model="vm.cvData.Overview[0].Objectives" name="Objectives" class="form-control" rows="6" id="statment" required></textarea>
+          <span class="text-warning" ng-messages="cvManager.Objectives.$error" ng-if="cvManager.$submitted">
+                <p ng-message="required">Enter Your Objectives</p>
+          </span>
         </div>
         <h4>Employment</h4>
         <div class="employment">
-          <div class="row">
+          <div ng-repeat-start="emp in vm.cvData.Employments">
+          <ng-form name="employment">
+          <div class="row" >
             <div class="col-sm-3 col-xs-6">
               <div class="form-group">
                 <label for="city">From Month</label>
-                <input type="text" class="form-control" id="city" placeholder="">
+                <input type="text" ng-pattern="/^[0-9]{2}$/"  ng-model="emp.FromMonth" name="FromMonth" class="form-control" id="city" placeholder="" required="" />
+                <span class="text-warning" ng-messages="employment.FromMonth.$error" ng-if="cvManager.$submitted">
+                <p ng-message="required">Enter Month</p>
+                <p ng-message="pattern">Enter Valid Format (eg: 01)</p>
+                </span>
               </div>
             </div>
             <div class="col-sm-3 col-xs-6">
               <div class="form-group">
                 <label for="city">From Year</label>
-                <input type="text" class="form-control" id="city" placeholder="">
+                <input type="text" class="form-control" ng-pattern="/^[0-9]{4}$/" name="FromYear" ng-model="emp.FromYear" id="city" placeholder="" required>
+                <span class="text-warning" ng-messages="employment.FromYear.$error" ng-if="cvManager.$submitted">
+                <p ng-message="required">Enter Year</p>
+                <p ng-message="pattern">Enter Valid Format (eg: 1990)</p>
+
+                </span>
               </div>
             </div>
             <div class="col-sm-3 col-xs-6">
               <div class="form-group">
                 <label for="city">To Month</label>
-                <input type="text" class="form-control" id="city" placeholder="">
+                <input type="text" ng-pattern="/^[0-9]{2}$/" ng-model="emp.ToMonth" name="ToMonth" class="form-control" id="city" placeholder="" required="">
+                <span class="text-warning" ng-messages="employment.ToMonth.$error" ng-if="cvManager.$submitted">
+                <p ng-message="required">Enter Month</p>
+                <p ng-message="pattern">Enter Valid Format (eg: 01)</p>
+
+                </span>
               </div>
             </div>
             <div class="col-sm-3 col-xs-6">
               <div class="form-group">
                 <label for="city">To Year</label>
-                <input type="text" class="form-control" id="city" placeholder="">
+                <input type="text" ng-model="emp.ToYear" ng-pattern="/^[0-9]{4}$/" name="ToYear" class="form-control" id="city" placeholder="" required>
+                <span class="text-warning" ng-messages="employment.ToYear.$error" ng-if="cvManager.$submitted">
+                <p ng-message="required">Enter Year</p>
+                <p ng-message="pattern">Enter Valid Format (eg: 1990)</p>
+
+                </span>
               </div>
             </div>
           </div>
           <div class="form-group">
             <label for="statment">Summary</label>
-            <textarea class="form-control" rows="6" id="statment"></textarea>
+            <textarea class="form-control" ng-model="emp.Summary" name="Summary" rows="6" id="statment" required=""></textarea>
+            <span class="text-warning" ng-messages="employment.Summary.$error" ng-if="cvManager.$submitted">
+              <p ng-message="required">Enter Summary</p>
+            </span>
           </div>
           <div class="form-group">
             <label for="statment">Responsibilities</label>
-            <textarea class="form-control" rows="6" id="statment"></textarea>
+            <textarea class="form-control" ng-model="emp.Responsibilities" name="Responsibilities" rows="6" id="statment" required=""></textarea>
+            <span class="text-warning" ng-messages="employment.Responsibilities.$error" ng-if="cvManager.$submitted">
+              <p ng-message="required">Enter Responsibilities</p>
+            </span>
           </div>
-          <div class="form-group">
+          <div class="form-group"  >
             <label for="statment">Achievments</label>
-            <textarea class="form-control" rows="6" id="statment"></textarea>
+            <textarea class="form-control" ng-model="emp.Achievments" name="Achievments" rows="6" id="statment" required=""></textarea>
+            <span class="text-warning" ng-messages="employment.Achievments.$error" ng-if="cvManager.$submitted">
+              <p ng-message="required">Enter Achievments</p>
+            </span>
           </div>
-          <button class="btn">Add Employment</button>
+          <button ng-if="$last" ng-click="vm.add('Employments')" class="btn btn-info btn-lg btn-block">Add Employment</button>
+          </ng-form>
+          </div>
+          <span ng-repeat-end></span>
+
         </div>
         <h4>Education</h4>
-        <div class="education">
+        <div class="education" >
+          <div ng-repeat-start="edu in vm.cvData.Education">
+          <ng-form name="education">
           <div class="row">
             <div class="col-sm-3 col-xs-6">
               <div class="form-group">
                 <label for="city">From Month</label>
-                <input type="text" class="form-control" id="city" placeholder="">
+                <input type="text" ng-pattern="/^[0-9]{2}$/" ng-model="edu.FromMonth" name="FromMonth"  class="form-control" id="city" placeholder="" required="">
+                <span class="text-warning" ng-messages="education.FromMonth.$error" ng-if="cvManager.$submitted">
+                <p ng-message="required">Enter Month</p>
+                <p ng-message="pattern">Enter Valid Format (eg: 01)</p>
+
+                </span>
               </div>
             </div>
             <div class="col-sm-3 col-xs-6">
               <div class="form-group">
                 <label for="city">From Year</label>
-                <input type="text" class="form-control" id="city" placeholder="">
+                <input type="text" ng-model="edu.FromYear" ng-pattern="/^[0-9]{4}$/" name="FromYear" class="form-control" id="city" placeholder="" required="">
+                <span class="text-warning" ng-messages="education.FromYear.$error" name="FromYear" ng-if="cvManager.$submitted">
+                <p ng-message="required">Enter Year</p>
+                <p ng-message="pattern">Enter Valid Format (eg: 1990)</p>
+
+                </span>
               </div>
             </div>
             <div class="col-sm-3 col-xs-6">
               <div class="form-group">
                 <label for="city">To Month</label>
-                <input type="text" class="form-control" id="city" placeholder="">
+                <input type="text" ng-pattern="/^[0-9]{2}$/" ng-model="edu.ToMonth" name="ToMonth" class="form-control" id="city" placeholder="" required="">
+                <span class="text-warning" ng-messages="education.ToMonth.$error" ng-if="cvManager.$submitted">
+                <p ng-message="required">Enter Month</p>
+                <p ng-message="pattern">Enter Valid Format (eg: 01)</p>
+
+                </span>
               </div>
             </div>
             <div class="col-sm-3 col-xs-6">
               <div class="form-group">
                 <label for="city">To Year</label>
-                <input type="text" class="form-control" id="city" placeholder="">
+                <input type="text" ng-model="edu.ToYear" ng-pattern="/^[0-9]{4}$/" name="ToYear" class="form-control" id="city" placeholder="" required="">
+                <span class="text-warning" ng-messages="education.ToYear.$error" ng-if="cvManager.$submitted">
+                <p ng-message="required">Enter Year</p>
+                </span>
               </div>
             </div>
           </div>
@@ -105,63 +168,105 @@
             <div class="col-sm-4">
               <div class="form-group">
                 <label for="statment">Place of Study</label>
-                <input type="text" class="form-control" id="city" placeholder="">
+                <input type="text" class="form-control" name="PlaceOfStudy" ng-model="edu.PlaceOfStudy" id="city" placeholder="" required="">
+                <span class="text-warning" ng-messages="education.PlaceOfStudy.$error" ng-if="cvManager.$submitted">
+                <p ng-message="required">Enter Place Of Study</p>
+                </span>
               </div>
             </div>
             <div class="col-sm-4">
               <div class="form-group">
                 <label for="statment">Subject</label>
-                <input type="text" class="form-control" id="city" placeholder="">
+                <input type="text" class="form-control" name="Subject" ng-model="edu.Subject" id="city" placeholder="" required="">
+                <span class="text-warning" ng-messages="education.Subject.$error" ng-if="cvManager.$submitted">
+                <p ng-message="required">Enter Subject</p>
+                </span>
               </div>
             </div>
             <div class="col-sm-4">
               <div class="form-group">
                 <label for="statment">Qualification</label>
-                <input type="text" class="form-control" id="city" placeholder="">
+                <input type="text" class="form-control" name="Qualification" id="city" ng-model="edu.Qualification"  placeholder="" required="">
+                <span class="text-warning" ng-messages="education.Qualification.$error" ng-if="cvManager.$submitted">
+                <p ng-message="required">Enter Qualification</p>
+                </span>
               </div>
             </div>
-            <button class="btn">Add Education</button>
+            
           </div>
-        </div>
+          <button ng-if="$last" ng-click="vm.add('Education')" class="btn btn-info btn-lg btn-block">Add Education </button>
+          </ng-form>
+          </div>
+          <span ng-repeat-end></span>
+
+        </div >
         <h4>Courses</h4>
         <div class="education">
+          <div ng-repeat-start="course in vm.cvData.Courses">
+          <ng-form name="courses">
           <div class="row">
             <div class="col-sm-3 col-xs-6">
               <div class="form-group">
                 <label for="city">Month</label>
-                <input type="text" class="form-control" id="city" placeholder="">
+                <input ng-model="course.Month" type="text" name="Month" ng-pattern="/^[0-9]{2}$/" class="form-control" id="city" placeholder="" required>
+                <span class="text-warning" ng-messages="courses.Month.$error" ng-if="cvManager.$submitted">
+                  <p ng-message="required">Enter Month</p>
+                  <p ng-message="pattern">Enter Valid Format (eg: 01)</p>
+
+                </span>
               </div>
             </div>
             <div class="col-sm-3 col-xs-6">
               <div class="form-group">
                 <label for="city">Year</label>
-                <input type="text" class="form-control" id="city" placeholder="">
+                <input ng-model="course.Year"  type="text" ng-pattern="/^[0-9]{4}$/" name="Year" required="" class="form-control" id="city" placeholder="">
+                <span class="text-warning" ng-messages="courses.Year.$error" ng-if="cvManager.$submitted">
+                  <p ng-message="required">Enter Year</p>
+                  <p ng-message="pattern">Enter Valid Format (eg: 1990)</p>
+
+                </span>
               </div>
             </div>
             <div class="col-sm-3 col-xs-6">
               <div class="form-group">
                 <label for="city">Name</label>
-                <input type="text" class="form-control" id="city" placeholder="">
+                <input ng-model="course.Name" name="Name" type="text" required="" class="form-control" id="city" placeholder="">
+                <span class="text-warning" ng-messages="courses.Name.$error" ng-if="cvManager.$submitted">
+                  <p ng-message="required">Enter Name</p>
+                </span>
               </div>
             </div>
             <div class="col-sm-3 col-xs-6">
               <div class="form-group">
                 <label for="city">Qualification</label>
-                <input type="text" class="form-control" id="city" placeholder="">
+                <input ng-model="course.Qualification" name="Qualification" required="" type="text" class="form-control" id="city" placeholder="">
+                <span class="text-warning" ng-messages="courses.Qualification.$error" ng-if="cvManager.$submitted">
+                  <p ng-message="required">Enter Qualification</p>
+                </span>
               </div>
             </div>
           </div>
-            <button class="btn">Add Course</button>
+            <button ng-click="vm.add('Courses')" ng-if="$last" class="btn btn-info btn-lg btn-block">Add Course</button>
+            </ng-form>
           </div>
+          <span ng-repeat-end></span>
         </div>
         <div class="form-group">
           <label for="statment">Hobbies</label>
-          <textarea ng-model="vm.cvData.Overview[0].Hobbies" class="form-control" rows="6" id="statment"></textarea>
+          <textarea required="" name="Hobbies" ng-model="vm.cvData.Overview[0].Hobbies" class="form-control" rows="6" id="statment"></textarea>
+          <span class="text-warning" ng-messages="cvManager.Hobbies.$error" ng-if="cvManager.$submitted">
+                  <p ng-message="required">Enter Hobbies</p>
+                </span>
         </div>
         <div class="form-group">
           <label for="statment">Other</label>
-          <textarea class="form-control" ng-model="vm.cvData.Overview[0].Other" rows="6" id="statment"></textarea>
+          <textarea name="Other" class="form-control" ng-model="vm.cvData.Overview[0].Other" rows="6" id="statment" required=""></textarea>
+          <span class="text-warning" ng-messages="cvManager.Other.$error" ng-if="cvManager.$submitted">
+                  <p ng-message="required">Enter Other</p>
+                </span>
         </div>
-        <button class="btn">Save CV</button>
-      </div>
+        <button ng-click="vm.save(cvManager, vm.cvData)" type="submit" value="submit" class="btn btn-success">Save <i ng-if="vm.submitted" class="fa fa-spinner fa-spin fa-1x fa-fw"></i></button>
+        </form>
+        </div>
+        <div>
 </div>

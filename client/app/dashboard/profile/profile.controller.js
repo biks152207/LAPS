@@ -69,6 +69,7 @@
               Notify.show('success', 'Successfully updated');
             },
             (error) => {
+              console.log(error);
               Notify.show('error', 'Invalid information')
               this.errors = {};
               this.submitted = false;
