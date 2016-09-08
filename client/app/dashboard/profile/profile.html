@@ -77,9 +77,10 @@
           </div>
           <div class="form-group">
             <label for="pcode">Postcode</label>
-            <input database-error  type="text" class="form-control" name="Postcode" id="pcode" placeholder="" ng-model="vm.profile.Postcode">
+            <input database-error ng-pattern="/^[A-Za-z]{1,2}[0-9A-Za-z]{1,2}[ ]?[0-9]{0,1}[A-Za-z]{2}$/"  type="text" class="form-control" name="Postcode" id="pcode" placeholder="" ng-model="vm.profile.Postcode">
             <span class="text-warning" ng-messages="profileForm.Postcode.$error" ng-if="profileForm.$submitted">
               <p ng-message="required">Please enter your postal code</p>
+              <p ng-message="pattern">Wrong format</p>
             </span>
             <span class="text-warning" ng-if="profileForm.Postcode.$error.database">
               {{vm.errors.Postcode}}
