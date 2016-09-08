@@ -16,14 +16,13 @@
       {{vm.job.JobLocation}}
       <h2>Details</h2>
       <p>{{vm.job.JobSummary}}</p>
-
       <strong>Contract Type</strong> Permanent<br/>
-      <strong>Working Hours</strong> Full time<br/>
+      <strong>Working Hours</strong> <span ng-repeat="hrs in vm.job.WorkingHours"><span ng-if="hrs == 'F'">Full Time</span><span ng-if="hrs == 'P'"> Part Time</span></span><br/>
       <strong>Salary</strong> {{vm.job.SalaryDescription}}<br/>
       <strong>Benefits</strong> benefits<br/>
       <strong>Posted</strong> {{vm.job.PublishFrom}}<br/>
-      <strong>Closing Date</strong> publish_to<br/>
-      <strong>Start date</strong> job_start_date_description<br/>
+      <strong>Closing Date</strong> {{vm.job.PublishUntil}}<br/>
+      <strong>Start date</strong> {{vm.job.JobStartDateDescription}}<br/>
 
       <h2>Contact</h2>
       <p>{{vm.job.Client.FirstName + ' ' + vm.job.Client.LastName}}<br/>
@@ -31,7 +30,7 @@
       {{vm.job.Client.Email}}</p>
 
       <strong>Reference</strong> source_reference<br/>
-      <strong>Visa Required</strong> job_visa<br/>
+      <strong>Visa Required</strong> <span ng-if="vm.job.JobVisa == 'Y'">Yes</span><span ng-if="vm.job.JobVisa == 'N'">No</span><br/>
     </div>
     <div class="col-sm-6">
       <div id="apply">
