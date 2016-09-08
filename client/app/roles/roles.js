@@ -29,8 +29,6 @@ angular.module('lapsApp')
             return HttpService.post('/content/getroles', $stateParams);
           },
           choosenSector: function(sectorLists, $stateParams){
-            console.log('i am here sector');
-            console.log(sectorLists);
             return sectorLists.filter((sector) => sector.id == $stateParams.SectorId);
           }
         },

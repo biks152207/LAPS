@@ -48,7 +48,7 @@
 
     this.onSelect = function(address){
       this.params.SearchOriginLatitude =  address.geometry.location.lat;
-      this.params.SearchOriginLongtitude = address.geometry.location.lng;
+      this.params.SearchOriginLongitude = address.geometry.location.lng;
     }
 
     function searchParams(){

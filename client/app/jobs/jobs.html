@@ -9,7 +9,8 @@
           <form class="form-inline">
             <div class="form-group">
               <label class="control-label">Sorted by</label>
-              <select class="form-control">
+              <select class="form-control" ng-model="vm.params.OrderBy">
+                <option value="">Select</option>
                 <option value="date" checked>Most Recent</option>
                 <option value="distance" checked>Distance</option>
                 <option value="salary-high" checked>Salary (High to Low)</option>
@@ -80,7 +81,7 @@
           </div>
           <!-- <button class="btn">Update Results</button> -->
         </div>
-        <div class="form-group" >
+        <div class="form-group" ng-if="vm.params.SearchOriginLatitude" >
           <label for="distance">Within</label>
             <select  name="SearchRadiusMiles" class="form-control" id="distance" ng-model="vm.params.SearchRadiusMiles" ng-options="mile.value as mile.Name for mile in vm.miles" >
               <option value="">Select</option>
@@ -124,8 +125,8 @@
         <a class="btn btn-info" data-toggle="collapse" ng-show="!vm.showMore" ng-if="vm.basedOn == 'customBased'" ng-click="vm.showMore = !vm.showMore">More Search options</a>
         <br ng-if="vm.basedOn == 'customBased'">
         <br ng-if="vm.basedOn == 'customBased'">
-        <button ng-disabled="vm.submitted"  ng-click="vm.searchJob(searchForm, vm.params)" type="submit" class="btn pull-left btn-success">Search</button>
-        <i ng-if="vm.submitted" class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+        <button ng-disabled="vm.submitted"  ng-click="vm.searchJob(searchForm, vm.params)" type="submit" class="btn pull-left btn-success">Search <i ng-if="vm.submitted" class="fa fa-spinner fa-spin fa-1x fa-fw"></i></button>
+
 
       </div>
 

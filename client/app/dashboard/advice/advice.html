@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="clearfix">
+       <!--  <div id="breadcrumb" class="pull-left">
+          Advice
+        </div> -->
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div>
+<!--         <h1>Advice</h1>
+ -->        <div ng-repeat="advice in vm.adviceList">
+<!--         Featured Image
+ -->        <h2>{{advice.title.rendered}}</h2>
+        <div ng-bind-html="advice.excerpt.rendered"></div>
+        <a ui-sref="advice.id({id: advice.id})" class="btn btn-default">Read More</a>
+        </div>
+        <!-- <div>
+        Featured Image
+        <h2>Article Name</h2>
+        <p>Excerpt</p>
+        <button class="btn">Read More</button>
+        </div>
+        <div>
+        Featured Image
+        <h2>Article Name</h2>
+        <p>Excerpt</p>
+        <button class="btn">Read More</button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>

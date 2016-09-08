@@ -20,7 +20,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li ng-hide="nav.isLoggedIn()" ui-sref-active="active" ><a ui-sref="signup">Sign up</a></li>
         <li ng-hide="nav.isLoggedIn()" ui-sref-active="active" ><a ui-sref="login">Login</a></li>
-        <li ng-if="nav.isLoggedIn()" ui-sref-active="active" ><a href="#">Advice</a></li>
+        <li ng-if="nav.isLoggedIn()" ui-sref-active="active" ><a ui-sref="advice.list">Advice</a></li>
         <li ng-if="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="roles.sector">Roles</a></li>
         <li ng-if="nav.isLoggedIn()" ui-sref-active="active"><a href="#">Videos</a></li>
         <li ng-if="nav.isLoggedIn()" ui-sref-active="active"><a ui-sref="jobs.list">Jobs</a></li>
