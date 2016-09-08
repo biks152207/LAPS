@@ -2,6 +2,7 @@
       <div class="row">
       <div class="col-xs-offset-1 col-xs-9">
         <form novalidate="" name="cvManager">
+        <fieldset ng-disabled="vm.submitted">
         <div class="row">
           <div class="col-sm-4" >
             <div class="form-group">
@@ -10,7 +11,7 @@
                 <option value="">Select</option>
               </select>
               <label for="sport" ng-if="vm.new == 2">CV title</label>
-              <input type="text" class="form-control" ng-if="vm.new == 2" name="Name" required ng-model="vm.cvData.Overview[0].name">
+              <input type="text" class="form-control" ng-if="vm.new == 2" name="Name" required ng-model="vm.cvData.Overview.Name">
               <span class="text-warning" ng-messages="cvManager.name.$error" ng-if="cvManager.$submitted">
                 <p ng-message="required">Enter CV Name</p>
               </span>
@@ -21,21 +22,21 @@
             <div class="form-group">
               <br>
               <button  type="button" ng-class="{active: vm.new == 1}" class="btn btn-default " ng-click="vm.new = 1;">Open</button>
-              <button type="button" ng-class="{active: vm.new == 2}" ng-click="vm.new = 2;" class="btn btn-default">New</button>
+              <button type="button"  ng-click="vm.changeStatus()" class="btn btn-default">New</button>
               <button type="button"   class="btn btn-default">Import</button>
           </div>
           </div>
         </div>
         <div class="form-group">
           <label for="statment">Personal Statement</label>
-          <textarea required ng-model="vm.cvData.Overview[0].PersonalStatement" name="PersonalStatement" class="form-control" rows="6" id="statment"></textarea>
+          <textarea required ng-model="vm.cvData.Overview.PersonalStatement" name="PersonalStatement" class="form-control" rows="6" id="statment"></textarea>
           <span class="text-warning" ng-messages="cvManager.PersonalStatement.$error" ng-if="cvManager.$submitted">
                 <p ng-message="required">Enter Your Personal Statement</p>
           </span>
         </div>
         <div class="form-group">
           <label for="statment">Objectives</label>
-          <textarea ng-model="vm.cvData.Overview[0].Objectives" name="Objectives" class="form-control" rows="6" id="statment" required></textarea>
+          <textarea ng-model="vm.cvData.Overview.Objectives" name="Objectives" class="form-control" rows="6" id="statment" required></textarea>
           <span class="text-warning" ng-messages="cvManager.Objectives.$error" ng-if="cvManager.$submitted">
                 <p ng-message="required">Enter Your Objectives</p>
           </span>
@@ -192,7 +193,7 @@
                 </span>
               </div>
             </div>
-            
+
           </div>
           <button ng-if="$last" ng-click="vm.add('Education')" class="btn btn-info btn-lg btn-block">Add Education </button>
           </ng-form>
@@ -253,19 +254,20 @@
         </div>
         <div class="form-group">
           <label for="statment">Hobbies</label>
-          <textarea required="" name="Hobbies" ng-model="vm.cvData.Overview[0].Hobbies" class="form-control" rows="6" id="statment"></textarea>
+          <textarea required="" name="Hobbies" ng-model="vm.cvData.Overview.Hobbies" class="form-control" rows="6" id="statment"></textarea>
           <span class="text-warning" ng-messages="cvManager.Hobbies.$error" ng-if="cvManager.$submitted">
                   <p ng-message="required">Enter Hobbies</p>
                 </span>
         </div>
         <div class="form-group">
           <label for="statment">Other</label>
-          <textarea name="Other" class="form-control" ng-model="vm.cvData.Overview[0].Other" rows="6" id="statment" required=""></textarea>
+          <textarea name="Other" class="form-control" ng-model="vm.cvData.Overview.Other" rows="6" id="statment" required=""></textarea>
           <span class="text-warning" ng-messages="cvManager.Other.$error" ng-if="cvManager.$submitted">
                   <p ng-message="required">Enter Other</p>
                 </span>
         </div>
         <button ng-click="vm.save(cvManager, vm.cvData)" type="submit" value="submit" class="btn btn-success">Save <i ng-if="vm.submitted" class="fa fa-spinner fa-spin fa-1x fa-fw"></i></button>
+        </fieldset>
         </form>
         </div>
         <div>
