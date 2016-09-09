@@ -19,7 +19,7 @@
         <p ng-if="vm.choosenSector[0].acf.suitability">{{vm.choosenSector[0].acf.suitability}}</p>
         <h3>Roles</h3>
         <ul class="list-group">
-          <li ng-repeat="role in vm.roles" class="list-group-item">{{role.Name}} <a ui-sref="roles.roleList({SectorId: sector.Id})" class="btn btn-info btn-sm">View Roles</a></li>
+          <li ng-repeat="role in vm.roles" class="list-group-item">{{role.title}} <a ui-sref="roles.info({SectorId: vm.choosenSector[0].id, id: role.id})" class="btn btn-info btn-sm">View Roles</a></li>
         </ul>
         <div class="" ng-if="vm.roles.length == 0">
           No roles

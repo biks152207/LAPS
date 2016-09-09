@@ -26,6 +26,8 @@ angular.module('lapsApp')
         templateUrl: 'app/roles/role.html',
         resolve: {
           roles: function(HttpService, $stateParams){
+            console.log($stateParams);
+            console.log('stateParams');
             return HttpService.post('/content/getSectorRoles', $stateParams);
           },
           choosenSector: function(sectorLists, $stateParams){
