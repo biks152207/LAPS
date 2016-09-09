@@ -37,8 +37,30 @@ angular.module('lapsApp')
         authRequire: true
       })
       .state('roles.info', {
-        url: '/role/info',
-        templateUrl: 'app/roles/rol.html',
-        authRequire: true
+        url: '/role/:SectorId/:id',
+        templateUrl: 'app/roles/roleInfo.html',
+        authRequire: true,
+        resolve: {
+          role: function(HttpService, $stateParams, $q, Notify, $state){
+            var defer = $q.defer();
+            HttpService.get('/wp/v2/roles/' + $stateParams.id)
+              .then(
+                (response) => {
+                  defer.resolve(response);
+                },
+                (error) => {
+                  Notify.show('error', error.data.message);
+                  $state.go('parent.profile');
+                  defer.reject();
+                }
+              )
+            return defer.promise;
+          },
+          choosenSector: function(sectorLists, $stateParams){
+            return sectorLists.filter((sector) => sector.id == $stateParams.SectorId);
+          }
+        },
+        controller: 'roleInfoCtrl',
+        controllerAs: 'vm'
       });
   });

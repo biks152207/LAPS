@@ -52,7 +52,8 @@
             url: '/cv',
             templateUrl: 'app/dashboard/cv/cv.html',
             controller: 'cvCtrl',
-            authRequire: true
+            authRequire: true,
+            controllerAs: 'vm'
           })
           .state('parent.cvmanager', {
             url: '/cv-manager',

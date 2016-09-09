@@ -81,7 +81,8 @@
             (response) => {
               this.submitted = false;
               var message;
-              cvData.Id ? message = 'Successfully updated': message = 'Successfully added'
+              cvData.Id ? message = 'Successfully updated': message = 'Successfully added';
+              this.listOfCvs = _.union(this.listOfCvs,[{Name: response.Overview.Name, Id: response.Id}]);
               Notify.show('success', message);
             },
             (error) =>{

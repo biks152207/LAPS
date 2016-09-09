@@ -11,7 +11,8 @@
   <div class="col-sm-3 text-center">
     <div class="form-group">
       <label for="exampleInputFile">Upload new CV</label>
-      <input type="file" id="exampleInputFile">
+      {{vm.cv.file | json}}
+      <input ngf-select file-uploader ng-model="vm.cv.file" type="file" id="exampleInputFile" ngf-pattern="'application/pdf'">
       <p class="help-block">Accepted file types.</p>
     </div>
   </div>

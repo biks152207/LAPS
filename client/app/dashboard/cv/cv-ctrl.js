@@ -4,7 +4,14 @@
     .controller('cvCtrl', CvCtrl);
 
   function CvCtrl(){
-    this.name = 'CV';
+    this.cv = {};
+    // Exectues when file is uploaded
+
+    this.upload = upload
+
+    function upload($files){
+      console.log($files);
+    }
   }
 
 })();

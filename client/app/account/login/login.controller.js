@@ -23,7 +23,6 @@ class LoginController {
       this.submitted = true;
       this.AuthenticationService.Login(this.user,
         (response) => {
-          console.log(response);
           if (response.status == 500){
             this.submitted = false;
             this.errMessage = response.data.code;

@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="clearfix">
+        <div id="breadcrumb" class="pull-left">
+          <span>Choose sector: {{vm.sector[0].title.rendered}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-9">
+        <h1>{{vm.role.title.rendered}}</h1>
+        <p ng-bind-html="vm.role.acf.general_overview"></p>
+        <h3>Qualifications Needed</h3>
+        <p ng-bind-html="vm.role.acf.qualifications_needed"></p>
+        <h3 ng-if="vm.role.acf.suitablility">Suitability</h3>
+        <p ng-bind-html="vm.role.acf.suitablility"></p>
+        <h3>Pay Range</h3>
+        <p ng-bind-html="vm.role.acf.pay_range"></p>
+        <h4>Course Links</h4>
+        <ul>
+          <li ng-repeat="course in vm.role.acf.course_links"><a href="{{course.link}}">{{course.description}}</a></li>
+        </ul>
+        <h4>Support Links</h4>
+        <ul>
+          <li ng-repeat="support in vm.role.acf.support_links"><a href="{{support.link}}">{{support.description}}</a></li>
+        </ul>
+      </div>
+      <div class="col-sm-3">
+        <h3>Latest Jobs</h3>
+        <h4>job_title</h3>
+        <p>job_location</p>
+        <button class="btn">Find out more</button>
+        <h4>job_title</h3>
+        <p>job_location</p>
+        <button class="btn">Find out more</button>
+        <h4>job_title</h3>
+        <p>job_location</p>
+        <button class="btn">Find out more</button>
+      </div>
+    </div>
+  </div>

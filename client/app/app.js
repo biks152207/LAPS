@@ -2,7 +2,8 @@
 
 angular.module('lapsApp', ['lapsApp.auth', 'lapsApp.admin', 'lapsApp.constants', 'ngCookies',
     'ngResource', 'ngSanitize', 'ui.router', 'ui.bootstrap', 'validation.match',
-    'ngMessages', 'ngStorage', 'ui-notification'
+    'ngMessages', 'ngStorage', 'ui-notification',
+    'ngFileUpload'
   ])
   .config(function($urlRouterProvider, $locationProvider, $httpProvider) {
     $urlRouterProvider.otherwise('/login');
