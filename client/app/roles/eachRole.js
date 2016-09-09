@@ -8,6 +8,8 @@ angular.module('lapsApp')
 
 function eachRoleCtrl(roles, choosenSector, $stateParams){
   this.roles = roles;
+  console.log(roles);
+  console.log('this is a roles');
   this.choosenSector = choosenSector;
   console.log(this.choosenSector);
   console.log('choosen');

@@ -5,7 +5,7 @@ angular.module('lapsApp', ['lapsApp.auth', 'lapsApp.admin', 'lapsApp.constants',
     'ngMessages', 'ngStorage', 'ui-notification'
   ])
   .config(function($urlRouterProvider, $locationProvider, $httpProvider) {
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/login');
 
     $locationProvider.html5Mode(true);
 

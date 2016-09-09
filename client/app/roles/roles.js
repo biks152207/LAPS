@@ -26,7 +26,7 @@ angular.module('lapsApp')
         templateUrl: 'app/roles/role.html',
         resolve: {
           roles: function(HttpService, $stateParams){
-            return HttpService.post('/content/getroles', $stateParams);
+            return HttpService.post('/content/getSectorRoles', $stateParams);
           },
           choosenSector: function(sectorLists, $stateParams){
             return sectorLists.filter((sector) => sector.id == $stateParams.SectorId);

@@ -21,7 +21,7 @@
       <strong>Salary</strong> {{vm.job.SalaryDescription}}<br/>
       <strong>Benefits</strong> benefits<br/>
       <strong>Posted</strong> {{vm.job.PublishFrom}}<br/>
-      <strong>Closing Date</strong> {{vm.job.PublishUntil}}<br/>
+      <strong ng-if="vm.job.PublishUntil">Closing Date</strong> {{vm.job.PublishUntil}}<br/>
       <strong>Start date</strong> {{vm.job.JobStartDateDescription}}<br/>
 
       <h2>Contact</h2>
@@ -29,7 +29,7 @@
       {{vm.job.Client.Phone}}</br>
       {{vm.job.Client.Email}}</p>
 
-      <strong>Reference</strong> source_reference<br/>
+      <!-- <strong>Reference</strong> source_reference<br/> -->
       <strong>Visa Required</strong> <span ng-if="vm.job.JobVisa == 'Y'">Yes</span><span ng-if="vm.job.JobVisa == 'N'">No</span><br/>
     </div>
     <div class="col-sm-6">

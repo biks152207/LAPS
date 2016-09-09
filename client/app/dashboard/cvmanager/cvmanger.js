@@ -101,27 +101,10 @@
         HttpService.post('/members/getcv', {Id: cvID})
           .then(
             (response) =>{
+
               cvID ? this.new = 2 : this.new = 1;
-              var response = response;
-              response.Overview = {};
-              Object.keys(response).forEach(
-                (key) => {
-                  console.log(key);
-                  if (this.OverviewObjectTemplate.hasOwnProperty(key)){
-                    console.log(response[key]);
-                    response.Overview[key] = response[key];
-                    delete response[key];
-                  }
-                }
-              )
-              this.cvData = angular.extend(response, angular.copy({
-                              MemberId: $rootScope.currentUser.userId,
-                              Employments: [angular.extend({},cvsData.Employments)],
-                              Education: [angular.extend({}, cvsData.Education)],
-                              Courses: [angular.extend({}, cvsData.Courses)]
-                            }));
+              this.cvData = angular.extend({},response);
               this.submitted = false;
-              console.log(this.cvData);
             }
           )
       }
